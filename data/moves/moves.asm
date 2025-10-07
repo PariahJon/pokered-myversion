@@ -12,7 +12,7 @@ Moves:
 ; Characteristics of each move.
 	table_width MOVE_LENGTH
 	move POUND,        NO_ADDITIONAL_EFFECT,        40, NORMAL,       100, 35
-	move KARATE_CHOP,  NO_ADDITIONAL_EFFECT,        50, NORMAL,       100, 25
+	move KARATE_CHOP,  NO_ADDITIONAL_EFFECT,        50, FIGHTING,     100, 25
 	move DOUBLESLAP,   TWO_TO_FIVE_ATTACKS_EFFECT,  15, NORMAL,        85, 10
 	move COMET_PUNCH,  TWO_TO_FIVE_ATTACKS_EFFECT,  18, NORMAL,        85, 15
 	move MEGA_PUNCH,   NO_ADDITIONAL_EFFECT,        80, NORMAL,        85, 20
@@ -26,7 +26,7 @@ Moves:
 	move RAZOR_WIND,   CHARGE_EFFECT,               80, NORMAL,        75, 10
 	move SWORDS_DANCE, ATTACK_UP2_EFFECT,            0, NORMAL,       100, 30
 	move CUT,          NO_ADDITIONAL_EFFECT,        50, NORMAL,        95, 30
-	move GUST,         NO_ADDITIONAL_EFFECT,        40, NORMAL,       100, 35
+	move GUST,         NO_ADDITIONAL_EFFECT,        40, FLYING,       100, 35
 	move WING_ATTACK,  NO_ADDITIONAL_EFFECT,        35, FLYING,       100, 35
 	move WHIRLWIND,    SWITCH_AND_TELEPORT_EFFECT,   0, NORMAL,        85, 20
 	move FLY,          FLY_EFFECT,                  70, FLYING,        95, 15
@@ -38,7 +38,7 @@ Moves:
 	move MEGA_KICK,    NO_ADDITIONAL_EFFECT,       120, NORMAL,        75,  5
 	move JUMP_KICK,    JUMP_KICK_EFFECT,            70, FIGHTING,      95, 25
 	move ROLLING_KICK, FLINCH_SIDE_EFFECT2,         60, FIGHTING,      85, 15
-	move SAND_ATTACK,  ACCURACY_DOWN1_EFFECT,        0, NORMAL,       100, 15
+	move SAND_ATTACK,  ACCURACY_DOWN1_EFFECT,        0, GROUND,       100, 15
 	move HEADBUTT,     FLINCH_SIDE_EFFECT2,         70, NORMAL,       100, 15
 	move HORN_ATTACK,  NO_ADDITIONAL_EFFECT,        65, NORMAL,       100, 25
 	move FURY_ATTACK,  TWO_TO_FIVE_ATTACKS_EFFECT,  15, NORMAL,        85, 20
@@ -54,7 +54,7 @@ Moves:
 	move TWINEEDLE,    TWINEEDLE_EFFECT,            25, BUG,          100, 20
 	move PIN_MISSILE,  TWO_TO_FIVE_ATTACKS_EFFECT,  14, BUG,           85, 20
 	move LEER,         DEFENSE_DOWN1_EFFECT,         0, NORMAL,       100, 30
-	move BITE,         FLINCH_SIDE_EFFECT1,         60, NORMAL,       100, 25
+	move BITE,         FLINCH_SIDE_EFFECT1,         60, DARK,         100, 25
 	move GROWL,        ATTACK_DOWN1_EFFECT,          0, NORMAL,       100, 40
 	move ROAR,         SWITCH_AND_TELEPORT_EFFECT,   0, NORMAL,       100, 20
 	move SING,         SLEEP_EFFECT,                 0, NORMAL,        55, 15
@@ -175,5 +175,92 @@ Moves:
 	move SUPER_FANG,   SUPER_FANG_EFFECT,            1, NORMAL,        90, 10
 	move SLASH,        NO_ADDITIONAL_EFFECT,        70, NORMAL,       100, 20
 	move SUBSTITUTE,   SUBSTITUTE_EFFECT,            0, NORMAL,       100, 10
-	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move SKETCH,       RECOIL_EFFECT,                0, NORMAL,       100, 10
+;	move TRIPLE_KICK,  RECOIL_EFFECT,               10, FIGHTING,       100, 10
+;	move THIEF,        RECOIL_EFFECT,               60, DARK,       100, 10
+;	move SPIDER_WEB,   RECOIL_EFFECT,                0, BUG,       100, 10
+;	move MIND_READER,  RECOIL_EFFECT,                0, NORMAL,       100, 10
+;	move NIGHTMARE,    RECOIL_EFFECT,                0, GHOST,       100, 10
+;	move FLAME_WHEEL,  RECOIL_EFFECT,               60, FIRE,       100, 10
+;	move SNORE,        RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move CURSE,        RECOIL_EFFECT,                0, GHOST,       100, 10
+;	move FLAIL,        RECOIL_EFFECT,                0, NORMAL,       100, 10
+;	move CONVERSION_2, RECOIL_EFFECT,                0, NORMAL,       100, 10
+;	move AEROBLAST,    RECOIL_EFFECT,              100, FLYING,       100, 10
+;	move COTTON_SPORE, RECOIL_EFFECT,                0, GRASS,       100, 10
+;	move REVERSAL,     RECOIL_EFFECT,                0, FIGHTING,       100, 10
+;	move SPITE,        RECOIL_EFFECT,                0, GHOST,       100, 10
+;	move POWDER_SNOW,  RECOIL_EFFECT,               50, ICE,       100, 10
+;	move PROTECT,      RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move MACH_PUNCH,   RECOIL_EFFECT,               50, FIGHTING,       100, 10
+;	move SCARY_FACE,   RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move FEINT_ATTACK, RECOIL_EFFECT,               50, DARK,       100, 10
+;	move SWEET_KISS,   RECOIL_EFFECT,               50, FAIRY,       100, 10
+;	move BELLY_DRUM,   RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move SLUDGE_BOMB,  RECOIL_EFFECT,               50, POISON,       100, 10
+;	move MUD_SLAP,     RECOIL_EFFECT,               50, GROUND,       100, 10
+;	move OCTAZOOKA,    RECOIL_EFFECT,               50, WATER,       100, 10
+;	move SPIKES,       RECOIL_EFFECT,               50, GROUND,       100, 10
+;	move ZAP_CANNON,   RECOIL_EFFECT,               50, ELECTRIC,       100, 10
+;	move FORESIGHT,    RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move DESTINY_BOND, RECOIL_EFFECT,               50, GHOST,       100, 10
+;	move PERISH_SONG,  RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move ICY_WIND,     RECOIL_EFFECT,               50, ICE,       100, 10
+;	move DETECT,       RECOIL_EFFECT,               50, FIGHTING,       100, 10
+;	move BONE_RUSH,    RECOIL_EFFECT,               50, GROUND,       100, 10
+;	move LOCK_ON,      RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move OUTRAGE,      RECOIL_EFFECT,               50, DRAGON,       100, 10
+;	move SANDSTORM,    RECOIL_EFFECT,               50, ROCK,       100, 10
+;	move GIGA_DRAIN,   RECOIL_EFFECT,               50, GRASS,       100, 10
+;	move ENDURE,       RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move CHARM,        RECOIL_EFFECT,               50, FAIRY,       100, 10
+;	move ROLLOUT,      RECOIL_EFFECT,               50, ROCK,       100, 10
+;	move FALSE_SWIPE,  RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move SWAGGER,      RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move MILK_DRINK,   RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move SPARK,        RECOIL_EFFECT,               50, ELECTRIC,       100, 10
+;	move FURY_CUTTER,  RECOIL_EFFECT,               50, BUG,       100, 10
+;	move STEEL_WING,   RECOIL_EFFECT,               50, STEEL,       100, 10
+;	move MEAN_LOOK,    RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move ATTRACT,      RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move SLEEP_TALK,   RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move HEAL_BELL,    RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move RETURN_MOVE,  RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move PRESENT,      RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move FRUSTRATION,  RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move SAFEGUARD,    RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move PAIN_SPLIT,   RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move SACRED_FIRE,  RECOIL_EFFECT,               50, FIRE,       100, 10
+;	move MAGNITUDE,    RECOIL_EFFECT,               50, GROUND,       100, 10
+;	move DYNAMIC_PUNCH,RECOIL_EFFECT,               50, FIGHTING,       100, 10
+;	move MEGAHORN,     RECOIL_EFFECT,               50, BUG,       100, 10
+;	move DRAGON_BREATH,RECOIL_EFFECT,               50, DRAGON,       100, 10
+;	move BATON_PASS,   RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move ENCORE,       RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move PURSUIT,      RECOIL_EFFECT,               50, DARK,       100, 10
+;	move RAPID_SPIN,   RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move SWEET_SCENT,  RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move IRON_TAIL,    RECOIL_EFFECT,               50, STEEL,       100, 10
+;	move METAL_CLAW,   RECOIL_EFFECT,               50, STEEL,       100, 10
+;	move VITAL_THROW,  RECOIL_EFFECT,               50, FIGHTING,       100, 10
+;	move MORNING_SUN,  RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move SYNTHESIS,    RECOIL_EFFECT,               50, GRASS,       100, 10
+;	move MOONLIGHT,    RECOIL_EFFECT,               50, FAIRY,       100, 10
+;	move HIDDEN_POWER, RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move CROSS_CHOP,   RECOIL_EFFECT,               50, FIGHTING,       100, 10
+;	move TWISTER,      RECOIL_EFFECT,               50, DRAGON,       100, 10
+;	move RAIN_DANCE,   RECOIL_EFFECT,               50, WATER,       100, 10
+;	move SUNNY_DAY,    RECOIL_EFFECT,               50, FIRE,       100, 10
+;	move CRUNCH,       RECOIL_EFFECT,               50, DARK,       100, 10
+;	move MIRROR_COAT,  RECOIL_EFFECT,               50, PSYCHIC_TYPE,       100, 10
+;	move PSYCH_UP,     RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move EXTREME_SPEED,RECOIL_EFFECT,               50, NORMAL,       100, 10
+;	move ANCIENTPOWER, RECOIL_EFFECT,               50, ROCK,       100, 10
+;	move SHADOW_BALL,  RECOIL_EFFECT,               50, GHOST,       100, 10
+;	move FUTURE_SIGHT, RECOIL_EFFECT,               50, PSYCHIC_TYPE,       100, 10
+;	move ROCK_SMASH,   RECOIL_EFFECT,               50, FIGHTING,       100, 10
+;	move WHIRLPOOL,    RECOIL_EFFECT,               50, WATER,       100, 10
+;	move BEAT_UP,      RECOIL_EFFECT,               50, DARK,       100, 10
+	move STRUGGLE,     RECOIL_EFFECT,               50, BIRD,       100, 10
+	
 	assert_table_length NUM_ATTACKS

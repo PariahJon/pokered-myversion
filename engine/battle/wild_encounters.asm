@@ -1,6 +1,9 @@
 ; try to initiate a wild pokemon encounter
 ; returns success in Z
 TryDoWildEncounter:
+	ld a, [wPartyCount]
+	and a
+	jp z, .CanEncounter
 	ld a, [wNPCMovementScriptPointerTableNum]
 	and a
 	ret nz
@@ -25,13 +28,16 @@ TryDoWildEncounter:
 .next
 ; determine if wild pokemon can appear in the half-block we're standing in
 ; is the bottom right tile (9,9) of the half-block we're standing in a grass/water tile?
-	hlcoord 9, 9
+	hlcoord 8, 9
 	ld c, [hl]
-	ld a, [wGrassTile]
-	cp c
+	call TestGrassTile
 	ld a, [wGrassRate]
 	jr z, .CanEncounter
 	ld a, $14 ; in all tilesets with a water tile, this is its id
+	cp c
+	ld a, [wWaterRate]
+	jr z, .CanEncounter
+	ld a, $32
 	cp c
 	ld a, [wWaterRate]
 	jr z, .CanEncounter
@@ -66,7 +72,10 @@ TryDoWildEncounter:
 	ld hl, wGrassMons
 	lda_coord 8, 9
 	cp $14 ; is the bottom left tile (8,9) of the half-block we're standing in a water tile?
-	jr nz, .gotWildEncounterType ; else, it's treated as a grass tile by default
+	jr z, .water
+	cp $32
+	jr nz, .gotWildEncounterType
+.water
 	ld hl, wWaterMons
 ; since the bottom right tile of a "left shore" half-block is $14 but the bottom left tile is not,
 ; "left shore" half-blocks (such as the one in the east coast of Cinnabar) load grass encounters.
@@ -99,6 +108,19 @@ TryDoWildEncounter:
 	ret
 .willEncounter
 	xor a
+	ld [wIsTrainerBattle], a
+	ret
+
+TestGrassTile:
+	ld a, [wGrassTile]
+	cp c
+	jr z, .return
+	ld a, [wCurMapTileset]
+	cp FOREST
+	jr nz, .return
+	ld a, $34
+	cp c
+.return
 	ret
 
 INCLUDE "data/wild/probabilities.asm"

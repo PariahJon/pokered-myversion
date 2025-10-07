@@ -69,6 +69,7 @@ DisplayDiploma::
 	res BIT_NO_TEXT_DELAY, [hl]
 	call GBPalWhiteOutWithDelay3
 	call RestoreScreenTilesAndReloadTilePatterns
+	call ReloadTilesetTilePatterns
 	call Delay3
 	jp GBPalNormal
 
@@ -111,7 +112,7 @@ DiplomaCongrats:
 	next "diploma certifies"
 	next "that you have"
 	next "completed your"
-	next "#DEX.@"
+	next "#Dex.@"
 
 DiplomaGameFreak:
-	db "GAME FREAK@"
+	db "Game Freak@"

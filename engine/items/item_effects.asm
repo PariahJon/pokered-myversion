@@ -183,137 +183,146 @@ ItemUseBall:
 ; Loop until an acceptable number is found.
 
 .loop
-	call Random
-	ld b, a
+; Gen 3 Style Catching by ZetaPhoenix
 
-; Get the item ID.
-	ld hl, wCurItem
-	ld a, [hl]
-
-; The Master Ball always succeeds.
-	cp MASTER_BALL
-	jp z, .captured
-
-; Anything will do for the basic Poké Ball.
-	cp POKE_BALL
-	jr z, .checkForAilments
-
-; If it's a Great/Ultra/Safari Ball and Rand1 is greater than 200, try again.
-	ld a, 200
-	cp b
-	jr c, .loop
-
-; Less than or equal to 200 is good enough for a Great Ball.
-	ld a, [hl]
-	cp GREAT_BALL
-	jr z, .checkForAilments
-
-; If it's an Ultra/Safari Ball and Rand1 is greater than 150, try again.
-	ld a, 150
-	cp b
-	jr c, .loop
-
-.checkForAilments
-; Pokémon can be caught more easily with a status ailment.
-; Depending on the status ailment, a certain value will be subtracted from
-; Rand1. Let this value be called Status.
-; The larger Status is, the more easily the Pokémon can be caught.
-; no status ailment:     Status = 0
-; Burn/Paralysis/Poison: Status = 12
-; Freeze/Sleep:          Status = 25
-; If Status is greater than Rand1, the Pokémon will be caught for sure.
-	ld a, [wEnemyMonStatus]
-	and a
-	jr z, .skipAilmentValueSubtraction ; no ailments
-	and (1 << FRZ) | SLP_MASK
-	ld c, 12
-	jr z, .notFrozenOrAsleep
-	ld c, 25
-.notFrozenOrAsleep
-	ld a, b
-	sub c
-	jp c, .captured
-	ld b, a
-
-.skipAilmentValueSubtraction
-	push bc ; save (Rand1 - Status)
-
-; Calculate MaxHP * 255.
+; HP calc
 	xor a
 	ldh [hMultiplicand], a
-	ld hl, wEnemyMonMaxHP
+	ld hl, wEnemyMonHP
 	ld a, [hli]
 	ldh [hMultiplicand + 1], a
 	ld a, [hl]
 	ldh [hMultiplicand + 2], a
-	ld a, 255
+	ld a, 85
 	ldh [hMultiplier], a
 	call Multiply
-
-; Determine BallFactor. It's 8 for Great Balls and 12 for the others.
-	ld a, [wCurItem]
-	cp GREAT_BALL
-	ld a, 12
-	jr nz, .skip1
-	ld a, 8
-
-.skip1
-; Note that the results of all division operations are floored.
-
-; Calculate (MaxHP * 255) / BallFactor.
+	ld a, [wEnemyMonMaxHP]
+	ld b, a
+	ld a, [wEnemyMonMaxHP + 1]
+	ld c, 1
+.divisionLoop
+	srl b
+	jr c, .lastRotate
+	jr z, .foundEnd
+.lastRotate
+	rra
+	sla c
+	jr nc, .noOverflow
+	ld c, $FF
+.noOverflow
+	jr .divisionLoop
+.foundEnd
+	and a
+	jr nz, .notDividingBy0
+	inc a
+.notDividingBy0
 	ldh [hDivisor], a
 	ld b, 4 ; number of bytes in dividend
 	call Divide
-
-; Divide the enemy's current HP by 4. HP is not supposed to exceed 999 so
-; the result should fit in a. If the division results in a quotient of 0,
-; change it to 1.
-	ld hl, wEnemyMonHP
-	ld a, [hli]
-	ld b, a
-	ld a, [hl]
-	srl b
-	rr a
-	srl b
-	rr a
-	and a
-	jr nz, .skip2
-	inc a
-
-.skip2
-; Let W = ((MaxHP * 255) / BallFactor) / max(HP / 4, 1). Calculate W.
+	ld a, c
 	ldh [hDivisor], a
-	ld b, 4
 	call Divide
-
-; If W > 255, store 255 in [hQuotient + 3].
-; Let X = min(W, 255) = [hQuotient + 3].
+	ldh a, [hQuotient + 1]
+	and a
+	jr z, .curHPLowerOrEqualThanMaxHP1
+	ld a, 85
+	ldh [hQuotient + 3], a
+.curHPLowerOrEqualThanMaxHP1
 	ldh a, [hQuotient + 2]
 	and a
-	jr z, .skip3
-	ld a, 255
+	jr z, .curHPLowerOrEqualThanMaxHP2
+	ld a, 85
 	ldh [hQuotient + 3], a
-
-.skip3
-	pop bc ; b = Rand1 - Status
-
-; If Rand1 - Status > CatchRate, the ball fails to capture the Pokémon.
+.curHPLowerOrEqualThanMaxHP2
+	ldh a, [hQuotient + 3]
+	cp 86
+	jr c, .curHPLowerOrEqualThanMaxHP3
+	ld a, 85
+.curHPLowerOrEqualThanMaxHP3
+	ld b, a
+	sla b
+	ld a, 255
+	sub b
+	ld b, a		; multiplier
+	ld c, 255	; divisor	
+	xor a
+	ldh [hMultiplicand], a
+	ldh [hMultiplicand + 1], a
 	ld a, [wEnemyMonActualCatchRate]
+	ldh [hMultiplicand + 2], a
+	ld a, b
+	ldh [hMultiplier], a
+	call Multiply
+	ld a, c
+	ldh [hDivisor], a
+	ld b, 4 ; number of bytes in dividend
+	call Divide
+	
+; read ball table
+	ld a, [wCurItem]
+	cp MASTER_BALL
+	jr z, .captured
+	ld b, a
+	ld hl, BallMultipliers
+.checkLoop
+	ld a, [hli]
 	cp b
-	jr c, .failedToCapture
-
-; If W > 255, the ball captures the Pokémon.
+	jr z, .ballFound
+	cp -1
+	jr z, .failedToCapture
+	inc hl
+	inc hl
+	jr .checkLoop
+.ballFound
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	ld a, b
+	ldh [hMultiplier], a
+	call Multiply
+	ld a, c
+	ldh [hDivisor], a
+	ld b, 4 ; number of bytes in dividend
+	call Divide
+	
+; read status
+	ld b, 1
+	ld c, 1
+	ld a, [wEnemyMonStatus]
+	and a
+	jr z, .ailmentMultiplierFound
+	ld b, 3
+	ld c, 2
+	and (1 << FRZ) | SLP_MASK
+	jr z, .ailmentMultiplierFound
+	ld b, 2
+	ld c, 1
+.ailmentMultiplierFound
+	ld a, b
+	ldh [hMultiplier], a
+	call Multiply
+	ld a, c
+	ldh [hDivisor], a
+	ld b, 4 ; number of bytes in dividend
+	call Divide
+	
+; threshold check
+	ldh a, [hQuotient]
+	and a
+	jr nz, .captured
+	ldh a, [hQuotient + 1]
+	and a
+	jr nz, .captured
 	ldh a, [hQuotient + 2]
 	and a
 	jr nz, .captured
-
-	call Random ; Let this random number be called Rand2.
-
-; If Rand2 > X, the ball fails to capture the Pokémon.
-	ld b, a
 	ldh a, [hQuotient + 3]
+	cp 255
+	jr z, .captured
+	ld b, a
+	call Random
 	cp b
-	jr c, .failedToCapture
+	jr nc, .failedToCapture
 
 .captured
 	jr .skipShakeCalculations
@@ -421,7 +430,7 @@ ItemUseBall:
 
 ; Do the animation.
 	ld a, TOSS_ANIM
-	ld [wAnimationID], a
+	ld [wAltAnimationID], a
 	xor a
 	ldh [hWhoseTurn], a
 	ld [wAnimationType], a
@@ -474,8 +483,6 @@ ItemUseBall:
 	ld hl, wEnemyBattleStatus3
 	bit TRANSFORMED, [hl]
 	jr z, .notTransformed
-	ld a, DITTO
-	ld [wEnemyMonSpecies2], a
 	jr .skip6
 
 .notTransformed
@@ -512,9 +519,24 @@ ItemUseBall:
 	ld [wCurPartySpecies], a
 	ld [wPokedexNum], a
 	ld a, [wBattleType]
+
+;	push hl
+;	ld a, [wTempSpecies]
+;	ld l, a
+;	ld a, [wCurPartyLevel]
+;	ld h, a
+;	push hl
+;	farcall ApplyExperienceAfterEnemyCaught
+;	pop hl
+;	ld a, l
+;	ld [wCurPartySpecies], a
+;	ld [wTempSpecies], a
+;	ld a, h
+;	ld [wCurPartyLevel], a
+;	pop hl
+	
 	dec a ; is this the old man battle?
 	jr z, .oldManCaughtMon ; if so, don't give the player the caught Pokémon
-
 	ld hl, ItemUseBallText05
 	call PrintText
 
@@ -827,7 +849,7 @@ ItemUseMedicine:
 	jp PrintText
 .emptyPartyText
 	text "You don't have"
-	line "any #MON!"
+	line "any #mon!"
 	prompt
 .notUsingSoftboiled
 	call DisplayPartyMenu
@@ -909,7 +931,10 @@ ItemUseMedicine:
 	ld de, wBattleMonStats
 	ld bc, NUM_STATS * 2
 	call CopyData ; copy party stats to in-battle stat data
-	predef DoubleOrHalveSelectedStats
+	xor a
+	ld [wCalculateWhoseStats], a
+	callfar CalculateModifiedStats
+	callfar ApplyBadgeStatBoosts
 	jp .doneHealing
 .healHP
 	inc hl ; hl = address of current HP
@@ -1458,7 +1483,7 @@ ItemUseRock:
 	ld de, wSafariBaitFactor ; bait factor
 
 BaitRockCommon:
-	ld [wAnimationID], a
+	ld [wAltAnimationID], a
 	xor a
 	ld [wAnimationType], a
 	ldh [hWhoseTurn], a
@@ -1495,6 +1520,10 @@ ItemUseEscapeRope:
 	jr nz, .notUsable
 	ld a, [wCurMap]
 	cp AGATHAS_ROOM
+	jr z, .notUsable
+	cp BILLS_HOUSE
+	jr z, .notUsable
+	cp POKEMON_FAN_CLUB
 	jr z, .notUsable
 	ld a, [wCurMapTileset]
 	ld b, a
@@ -1608,6 +1637,7 @@ ItemUsePokeDoll:
 	dec a
 	jp nz, ItemUseNotTime
 	ld a, $01
+	ld [wBattleResult], a
 	ld [wEscapedFromBattle], a
 	jp PrintItemUseTextAndRemoveItem
 
@@ -1656,6 +1686,7 @@ ItemUseXStat:
 	call PrintItemUseTextAndRemoveItem
 	ld a, XSTATITEM_ANIM ; X stat item animation ID
 	ld [wPlayerMoveNum], a
+	ld [wAltAnimationID], a
 	call LoadScreenTilesFromBuffer1 ; restore saved screen
 	call Delay3
 	xor a
@@ -2081,6 +2112,7 @@ ItemUsePPRestore:
 ; how many PP Ups have been used on the move.
 ; So, Max Ethers and Max Elixirs will not be detected as having no effect on
 ; a move with full PP if the move has had any PP Ups used on it.
+	and %00111111
 	cp b ; does current PP equal max PP?
 	ret z
 	jr .storeNewAmount
@@ -2240,13 +2272,7 @@ ItemUseTMHM:
 	ld [wCurItem], a
 	pop af
 	ld [wWhichPokemon], a
-	ld a, b
-	and a
-	ret z
-	ld a, [wCurItem]
-	call IsItemHM
-	ret c
-	jp RemoveUsedItem
+	ret
 
 BootedUpTMText:
 	text_far _BootedUpTMText
@@ -2294,7 +2320,7 @@ ThrowBallAtTrainerMon:
 	call LoadScreenTilesFromBuffer1 ; restore saved screen
 	call Delay3
 	ld a, TOSS_ANIM
-	ld [wAnimationID], a
+	ld [wAltAnimationID], a
 	predef MoveAnimation ; do animation
 	ld hl, ThrowBallAtTrainerMonText1
 	call PrintText
@@ -2934,6 +2960,8 @@ CheckMapForMon:
 	ld a, c
 	ld [de], a
 	inc de
+	inc hl
+	ret
 .nextEntry
 	inc hl
 	inc hl
@@ -2941,3 +2969,21 @@ CheckMapForMon:
 	jr nz, .loop
 	dec hl
 	ret
+
+; registers de and hl comparison by Vortiene
+; sets carry flag if DE is greater than HL. Sets zero flag if they're equal.
+CompareDEHL:
+    ld a, h
+    sub d
+    ret nz ; if carry, DE is greater, if no carry, HL is greater
+; 2nd byte comparison
+    ld a, l
+    sub e
+    ret ; if carry, DE is greater, if no carry, HL is greater, if z, they're equal
+BallMultipliers:
+; 	db ITEM_ID, Numerator, Denominator
+	db POKE_BALL   , 1, 1	; x1
+	db GREAT_BALL  , 3, 2	; x1.5
+	db SAFARI_BALL , 3, 2   ; x1.5
+	db ULTRA_BALL  , 2, 1	; x2
+	db -1 ; end

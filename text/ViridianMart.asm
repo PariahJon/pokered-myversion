@@ -1,31 +1,31 @@
 _ViridianMartClerkSayHiToOakText::
 	text "Okay! Say hi to"
-	line "PROF.OAK for me!"
+	line "Prof.Oak for me!"
 	done
 
 _ViridianMartClerkYouCameFromPalletTownText::
 	text "Hey! You came from"
-	line "PALLET TOWN?"
+	line "Pallet Town?"
 	done
 
 _ViridianMartClerkParcelQuestText::
-	text "You know PROF."
-	line "OAK, right?"
+	text "You know Prof."
+	line "Oak, right?"
 
 	para "His order came in."
 	line "Will you take it"
 	cont "to him?"
 
 	para "<PLAYER> got"
-	line "OAK's PARCEL!@"
+	line "Oak's Parcel!@"
 	text_end
 
 _ViridianMartYoungsterText::
 	text "This shop sells"
-	line "many ANTIDOTEs."
+	line "many Antidotes."
 	done
 
 _ViridianMartCooltrainerMText::
-	text "No! POTIONs are"
+	text "No! Potions are"
 	line "all sold out."
 	done

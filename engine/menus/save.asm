@@ -163,7 +163,7 @@ SaveMenu:
 	and a
 	ret nz
 .save
-	call SaveGameData
+
 	hlcoord 1, 13
 	lb bc, 4, 18
 	call ClearScreenArea
@@ -172,6 +172,7 @@ SaveMenu:
 	call PlaceString
 	ld c, 120
 	call DelayFrames
+	call SaveGameData
 	ld hl, GameSavedText
 	call PrintText
 	ld a, SFX_SAVE
@@ -224,6 +225,10 @@ SaveMainData:
 	ld hl, wSpriteDataStart
 	ld de, sSpriteData
 	ld bc, wSpriteDataEnd - wSpriteDataStart
+	call CopyData
+	ld hl, wPartyDataStart
+	ld de, sPartyData
+	ld bc, wPartyDataEnd - wPartyDataStart
 	call CopyData
 	ld hl, wBoxDataStart
 
@@ -290,9 +295,7 @@ SavePartyAndDexData:
 SaveGameData::
 	ld a, $2
 	ld [wSaveFileStatus], a
-	call SaveMainData
-	call SaveCurrentBoxData
-	jp SavePartyAndDexData
+	jp SaveMainData
 
 CalcCheckSum:
 ;Check Sum (result[1 byte] is complemented)
@@ -510,21 +513,21 @@ ChooseABoxText:
 	text_end
 
 BoxNames:
-	db   "BOX 1"
-	next "BOX 2"
-	next "BOX 3"
-	next "BOX 4"
-	next "BOX 5"
-	next "BOX 6"
-	next "BOX 7"
-	next "BOX 8"
-	next "BOX 9"
-	next "BOX10"
-	next "BOX11"
-	next "BOX12@"
+	db   "Box 1"
+	next "Box 2"
+	next "Box 3"
+	next "Box 4"
+	next "Box 5"
+	next "Box 6"
+	next "Box 7"
+	next "Box 8"
+	next "Box 9"
+	next "Box10"
+	next "Box11"
+	next "Box12@"
 
 BoxNoText:
-	db "BOX No.@"
+	db "Box No.@"
 
 EmptyAllSRAMBoxes:
 ; marks all boxes in SRAM as empty (initialisation for the first time the

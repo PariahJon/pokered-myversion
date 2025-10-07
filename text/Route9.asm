@@ -1,5 +1,5 @@
 _Route9CooltrainerF1BattleText::
-	text "You have #MON"
+	text "You have #mon"
 	line "with you!"
 	cont "You're mine!"
 	done
@@ -18,7 +18,7 @@ _Route9CooltrainerF1AfterBattleText::
 _Route9CooltrainerM1BattleText::
 	text "Who's that walking"
 	line "with those good"
-	cont "looking #MON?"
+	cont "looking #mon?"
 	done
 
 _Route9CooltrainerM1EndBattleText::
@@ -31,9 +31,9 @@ _Route9CooltrainerM1AfterBattleText::
 	done
 
 _Route9CooltrainerM2BattleText::
-	text "I'm taking ROCK"
-	line "TUNNEL to go to"
-	cont "LAVENDER..."
+	text "I'm taking Rock"
+	line "Tunnel to go to"
+	cont "Lavender..."
 	done
 
 _Route9CooltrainerM2EndBattleText::
@@ -43,7 +43,7 @@ _Route9CooltrainerM2EndBattleText::
 
 _Route9CooltrainerM2AfterBattleText::
 	text "Are you off to"
-	line "ROCK TUNNEL too?"
+	line "Rock Tunnel too?"
 	done
 
 _Route9CooltrainerF2BattleText::
@@ -73,7 +73,7 @@ _Route9Hiker1EndBattleText::
 	line "coming, eh!"
 
 	para "Oh wait. I'm out"
-	line "of #MON!"
+	line "of #mon!"
 	prompt
 
 _Route9Hiker1AfterBattleText::
@@ -101,12 +101,12 @@ _Route9Hiker2AfterBattleText::
 _Route9Youngster1BattleText::
 	text "I got up early"
 	line "every day to"
-	cont "raise my #MON"
+	cont "raise my #mon"
 	cont "from cocoons!"
 	done
 
 _Route9Youngster1EndBattleText::
-	text "WHAT?"
+	text "What?"
 
 	para "What a total"
 	line "waste of time!"
@@ -136,7 +136,7 @@ _Route9Hiker3AfterBattleText::
 
 _Route9Youngster2BattleText::
 	text "Go, my super bug"
-	line "#MON!"
+	line "#mon!"
 	done
 
 _Route9Youngster2EndBattleText::
@@ -146,12 +146,12 @@ _Route9Youngster2EndBattleText::
 
 _Route9Youngster2AfterBattleText::
 	text "If you don't like"
-	line "bug #MON, you"
+	line "bug #mon, you"
 	cont "bug me!"
 	done
 
 _Route9SignText::
-	text "ROUTE 9"
-	line "CERULEAN CITY-"
-	cont "ROCK TUNNEL"
+	text "Route 9"
+	line "Cerulean City-"
+	cont "Rock Tunnel"
 	done

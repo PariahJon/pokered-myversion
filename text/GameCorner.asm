@@ -8,8 +8,8 @@ _GameCornerBeauty1Text::
 	done
 
 _GameCornerClerk1DoYouNeedSomeGameCoinsText::
-	text "Welcome to ROCKET"
-	line "GAME CORNER!"
+	text "Welcome to Rocket"
+	line "Game Corner!"
 
 	para "Do you need some"
 	line "game coins?"
@@ -35,13 +35,13 @@ _GameCornerClerk1CantAffordTheCoinsText::
 	done
 
 _GameCornerClerk1CoinCaseIsFullText::
-	text "Oops! Your COIN"
-	line "CASE is full."
+	text "Oops! Your Coin"
+	line "Case is full."
 	done
 
 _GameCornerClerk1DontHaveCoinCaseText::
 	text "You don't have a"
-	line "COIN CASE!"
+	line "Coin Case!"
 	done
 
 _GameCornerMiddleAgedMan1Text::
@@ -49,7 +49,7 @@ _GameCornerMiddleAgedMan1Text::
 
 	para "It's rumored that"
 	line "this place is run"
-	cont "by TEAM ROCKET."
+	cont "by Team Rocket."
 	done
 
 _GameCornerBeauty2Text::
@@ -90,10 +90,10 @@ _GameCornerGymGuideChampInMakingText::
 	line "things to do,"
 	cont "champ in making!"
 
-	para "CELADON GYM's"
-	line "LEADER is ERIKA!"
+	para "Celadon Gym's"
+	line "Leader is Erika!"
 	cont "She uses grass-"
-	cont "type #MON!"
+	cont "type #mon!"
 
 	para "She might appear"
 	line "docile, but don't"
@@ -102,7 +102,7 @@ _GameCornerGymGuideChampInMakingText::
 
 _GameCornerGymGuideTheyOfferRarePokemonText::
 	text "They offer rare"
-	line "#MON that can"
+	line "#mon that can"
 	cont "be exchanged for"
 	cont "your coins."
 
@@ -134,7 +134,7 @@ _GameCornerClerk2YouHaveLotsOfCoinsText::
 _GameCornerClerk2INeedMoreCoinsText::
 	text "Darn! I need more"
 	line "coins for the"
-	cont "#MON I want!"
+	cont "#mon I want!"
 	done
 
 _GameCornerGentlemanThrowingMeOffText::
@@ -173,7 +173,7 @@ _GameCornerRocketBattleEndText::
 _GameCornerRocketAfterBattleText::
 	text "Our hideout might"
 	line "be discovered! I"
-	cont "better tell BOSS!"
+	cont "better tell Boss!"
 	done
 
 _GameCornerPosterSwitchBehindPosterText::
@@ -186,5 +186,5 @@ _GameCornerPosterSwitchBehindPosterText::
 
 _GameCornerOopsForgotCoinCaseText::
 	text "Oops! Forgot the"
-	line "COIN CASE!"
+	line "Coin Case!"
 	done

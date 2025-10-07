@@ -113,6 +113,9 @@
 	const_skip
 	const EVENT_GOT_TM24
 	const EVENT_BEAT_LT_SURGE
+	const_skip
+	const EVENT_BEAT_MEW
+
 
 ; Celadon City events
 	const_next $180
@@ -773,5 +776,7 @@ DEF INDIGO_PLATEAU_EVENTS_END EQU const_value - 1
 	const EVENT_BEAT_ARTICUNO
 
 ; End of events
+	const EVENT_BEAT_ELITE4
+
 	const_next $A00
 DEF NUM_EVENTS EQU const_value

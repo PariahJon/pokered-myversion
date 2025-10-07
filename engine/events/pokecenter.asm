@@ -2,6 +2,9 @@ DisplayPokemonCenterDialogue_::
 	call SaveScreenTilesToBuffer1 ; save screen
 	ld hl, PokemonCenterWelcomeText
 	call PrintText
+	ld a, [wPartyCount]
+	and a
+	jp z, .noPartyPokemon
 	ld hl, wStatusFlags4
 	bit BIT_USED_POKECENTER, [hl]
 	set BIT_UNKNOWN_4_1, [hl]
@@ -44,6 +47,13 @@ DisplayPokemonCenterDialogue_::
 	ld hl, PokemonCenterFarewellText
 	call PrintText
 	jp UpdateSprites
+.noPartyPokemon
+	ld hl, WithoutPokemonText
+	jp PrintText
+	
+WithoutPokemonText:
+	text_far _WithoutPokemonText
+	text_end
 
 PokemonCenterWelcomeText:
 	text_far _PokemonCenterWelcomeText

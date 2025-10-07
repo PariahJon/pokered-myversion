@@ -6,11 +6,11 @@ _SilphCo5FRockerEndBattleText::
 _SilphCo5FRockerAfterBattleText::
 	text "You're only on 5F."
 	line "It's a long way"
-	cont "to my BOSS!"
+	cont "to my Boss!"
 	done
 
 _SilphCo5FRocket2BattleText::
-	text "Show TEAM ROCKET"
+	text "Show Team Rocket"
 	line "a little respect!"
 	done
 
@@ -22,34 +22,34 @@ _SilphCo5FRocket2EndBattleText::
 _SilphCo5FRocket2AfterBattleText::
 	text "Which reminds me."
 
-	para "KOFFING evolves"
-	line "into WEEZING!"
+	para "Koffing evolves"
+	line "into Weezing!"
 	done
 
 _SilphCo5FPokemonReport1Text::
-	text "It's a #MON"
-	line "REPORT!"
+	text "It's a #mon"
+	line "Report!"
 
-	para "#MON LAB"
-	line "created PORYGON,"
+	para "#mon Lab"
+	line "created Porygon,"
 	cont "the first virtual"
-	cont "reality #MON."
+	cont "reality #mon."
 	done
 
 _SilphCo5FPokemonReport2Text::
-	text "It's a #MON"
-	line "REPORT!"
+	text "It's a #mon"
+	line "Report!"
 
-	para "Over 160 #MON"
+	para "Over 160 #mon"
 	line "techniques have"
 	cont "been confirmed."
 	done
 
 _SilphCo5FPokemonReport3Text::
-	text "It's a #MON"
-	line "REPORT!"
+	text "It's a #mon"
+	line "Report!"
 
-	para "4 #MON evolve"
+	para "4 #mon evolve"
 	line "only when traded"
 	cont "by link-cable."
 	done

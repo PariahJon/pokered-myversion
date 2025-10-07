@@ -34,6 +34,7 @@ AskName:
 	and a
 	jr nz, .inBattle
 	call ReloadMapSpriteTilePatterns
+	call ReloadTilesetTilePatterns
 .inBattle
 	call LoadScreenTilesFromBuffer1
 	pop hl
@@ -466,9 +467,6 @@ PrintNamingText:
 	call GetMonName
 	hlcoord 4, 1
 	call PlaceString
-	ld hl, $1
-	add hl, bc
-	ld [hl], "の" ; leftover from Japanese version; blank tile $c9 in English
 	hlcoord 1, 3
 	ld de, NicknameTextString
 	jr .placeString
@@ -481,13 +479,13 @@ PrintNamingText:
 	jp PlaceString
 
 YourTextString:
-	db "YOUR @"
+	db "Your @"
 
 RivalsTextString:
-	db "RIVAL's @"
+	db "Rival's @"
 
 NameTextString:
-	db "NAME?@"
+	db "Name?@"
 
 NicknameTextString:
-	db "NICKNAME?@"
+	db "Nickname?@"

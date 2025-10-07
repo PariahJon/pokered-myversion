@@ -190,11 +190,33 @@ _AfterTrade3Text::
 
 _NothingToCutText::
 	text "There isn't"
-	line "anything to CUT!"
+	line "anything to Cut!"
 	prompt
 
 _UsedCutText::
 	text_ram wNameBuffer
 	text " hacked"
-	line "away with CUT!"
+	line "away with Cut!"
 	prompt
+
+_WannaTrade4Text::
+	text "I'm the Trader! I"
+	line "can trade your"
+	cont "own #mon back"
+	cont "to you."
+	para "Wanna trade?"
+	done
+	
+_NoTrade4Text::
+	text "OK, maybe next"
+	line "time then."
+	done
+
+_WrongMon4Text::
+	text "Wrong."
+	done
+	
+_Thanks4Text::
+	text "All done, I hope"
+	line "that helped."
+	done

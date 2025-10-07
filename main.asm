@@ -101,7 +101,6 @@ INCLUDE "engine/math/random.asm"
 SECTION "Battle Engine 2", ROMX
 
 INCLUDE "engine/gfx/load_pokedex_tiles.asm"
-INCLUDE "engine/overworld/map_sprites.asm"
 INCLUDE "engine/overworld/emotion_bubbles.asm"
 INCLUDE "engine/events/evolve_trade.asm"
 INCLUDE "engine/battle/move_effects/substitute.asm"
@@ -251,6 +250,7 @@ INCLUDE "engine/events/hidden_objects/indigo_plateau_hq.asm"
 SECTION "Battle Engine 9", ROMX
 
 INCLUDE "engine/battle/experience.asm"
+INCLUDE "engine/gfx/exp_bar.asm"
 
 
 SECTION "Diploma", ROMX
@@ -260,6 +260,7 @@ INCLUDE "engine/events/diploma.asm"
 
 SECTION "Trainer Sight", ROMX
 
+INCLUDE "engine/overworld/map_sprites.asm"
 INCLUDE "engine/overworld/trainer_sight.asm"
 
 
@@ -305,7 +306,7 @@ INCLUDE "engine/events/hidden_objects/pokecenter_pc.asm"
 
 SECTION "Battle Engine 11", ROMX
 
-INCLUDE "engine/battle/decrement_pp.asm"
+
 INCLUDE "gfx/version.asm"
 
 
@@ -340,17 +341,20 @@ SECTION "Itemfinder 2", ROMX
 
 INCLUDE "engine/menus/league_pc.asm"
 INCLUDE "engine/events/hidden_items.asm"
-
+INCLUDE "engine/battle/decrement_pp.asm"
 
 SECTION "bank1E", ROMX
 
-INCLUDE "engine/battle/animations.asm"
 INCLUDE "engine/overworld/cut2.asm"
 INCLUDE "engine/overworld/dust_smoke.asm"
 INCLUDE "gfx/fishing.asm"
-INCLUDE "data/moves/animations.asm"
 INCLUDE "data/battle_anims/subanimations.asm"
 INCLUDE "data/battle_anims/frame_blocks.asm"
 INCLUDE "engine/movie/evolution.asm"
 INCLUDE "engine/overworld/elevator.asm"
 INCLUDE "engine/items/tm_prices.asm"
+
+SECTION "bank1F", ROMX
+
+INCLUDE "engine/battle/animations.asm"
+INCLUDE "data/moves/animations.asm"

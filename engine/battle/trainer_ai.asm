@@ -18,6 +18,23 @@ AIEnemyTrainerChooseMoves:
 	add hl, bc    ; advance pointer to forbidden move
 	ld [hl], $50  ; forbid (highly discourage) disabled move
 .noMoveDisabled
+ 	ld hl, wBuffer - 1
+	ld de, wEnemyMonPP
+	ld b, 0
+.checkMovePP
+	inc b
+	ld a, b
+	cp NUM_MOVES + 1
+	jr z, .endPPCheck
+	inc hl
+	ld a, [de]
+	inc de
+	and $3f
+	jr nz, .checkMovePP
+	ld [hl], $50
+	jr .checkMovePP
+.endPPCheck
+
 	ld hl, TrainerClassMoveChoiceModifications
 	ld a, [wTrainerClass]
 	ld b, a
@@ -345,7 +362,7 @@ CooltrainerFAI:
 	; The intended 25% chance to consider switching will not apply.
 	; Uncomment the line below to fix this.
 	cp 25 percent + 1
-	; ret nc
+	ret nc
 	ld a, 10
 	call AICheckIfHPBelowFraction
 	jp c, AIUseHyperPotion
@@ -386,6 +403,9 @@ KogaAI:
 
 BlaineAI:
 	cp 25 percent + 1
+	ret nc
+	ld a, 10
+	call AICheckIfHPBelowFraction
 	ret nc
 	jp AIUseSuperPotion
 
@@ -549,6 +569,9 @@ AIPrintItemUseAndUpdateHPBar:
 	xor a
 	ld [wHPBarType], a
 	predef UpdateHPBar2
+	push af
+	farcall DrawEnemyHUDAndHPBar
+	pop af
 	jp DecrementAICount
 
 AISwitchIfEnoughMons:
@@ -633,6 +656,9 @@ AICureStatus:
 	ld [wEnemyMonStatus], a ; clear status of active enemy
 	ld hl, wEnemyBattleStatus3
 	res BADLY_POISONED, [hl]
+	push af
+	farcall DrawEnemyHUDAndHPBar
+	pop af
 	ret
 
 AIUseXAccuracy: ; unreferenced
@@ -714,6 +740,7 @@ AIIncreaseStat:
 	push af
 	push hl
 	ld a, XSTATITEM_DUPLICATE_ANIM
+	ld [wAltAnimationID], a
 	ld [hli], a
 	ld [hl], b
 	callfar StatModifierUpEffect

@@ -110,7 +110,7 @@ StatusScreen:
 	call DrawLineBox ; Draws the box around name, HP and status
 	ld de, -6
 	add hl, de
-	ld [hl], "<DOT>"
+	ld [hl], "."
 	dec hl
 	ld [hl], "№"
 	hlcoord 19, 9
@@ -205,11 +205,11 @@ NamePointers2:
 	dw wDayCareMonName
 
 Type1Text:
-	db   "TYPE1/"
+	db   "Type1/"
 	next ""
 	; fallthrough
 Type2Text:
-	db   "TYPE2/"
+	db   "Type2/"
 	next ""
 	; fallthrough
 IDNoText:
@@ -221,7 +221,7 @@ OTText:
 	next "@"
 
 StatusText:
-	db "STATUS/@"
+	db "Status/@"
 
 OKText:
 	db "OK@"
@@ -290,10 +290,10 @@ PrintStat:
 	ret
 
 StatsText:
-	db   "ATTACK"
-	next "DEFENSE"
-	next "SPEED"
-	next "SPECIAL@"
+	db   "Attack"
+	next "Defense"
+	next "Speed"
+	next "Special@"
 
 StatusScreen2:
 	ldh a, [hTileAnimations]
@@ -464,8 +464,8 @@ CalcExpToLevelUp:
 	ret
 
 StatusScreenExpText:
-	db   "EXP POINTS"
-	next "LEVEL UP@"
+	db   "Exp Points"
+	next "Level Up@"
 
 StatusScreen_ClearName:
 	ld bc, 10

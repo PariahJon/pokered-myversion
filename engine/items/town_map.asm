@@ -136,7 +136,7 @@ LoadTownMap_Nest:
 	ret
 
 MonsNestText:
-	db "'s NEST@"
+	db "'s Nest@"
 
 LoadTownMap_Fly::
 	call ClearSprites
@@ -341,6 +341,7 @@ ExitTownMap:
 	call ClearSprites
 	call LoadPlayerSpriteGraphics
 	call LoadFontTilePatterns
+	call ReloadTilesetTilePatterns
 	call UpdateSprites
 	jp RunDefaultPaletteCommand
 
@@ -419,7 +420,7 @@ DisplayWildLocations:
 	jp CopyData
 
 AreaUnknownText:
-	db " AREA UNKNOWN@"
+	db " Area Unknown@"
 
 TownMapCoordsToOAMCoords:
 ; in: lower nybble of a = x, upper nybble of a = y
@@ -584,6 +585,15 @@ LoadTownMapEntry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	ret
+
+GetMapName::
+	ld a, e
+	ld de, wNameBuffer
+	call LoadTownMapEntry
+	ld de, wNameBuffer
+	ld bc, NAME_BUFFER_LENGTH
+	call CopyData
 	ret
 
 INCLUDE "data/maps/town_map_entries.asm"

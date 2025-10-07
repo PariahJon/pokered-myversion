@@ -170,6 +170,92 @@
 	const SUPER_FANG   ; a2
 	const SLASH        ; a3
 	const SUBSTITUTE   ; a4
+;	const SKETCH
+;	const TRIPLE_KICK
+;	const THIEF
+;	const SPIDER_WEB
+;	const MIND_READER
+;	const NIGHTMARE
+;	const FLAME_WHEEL
+;	const SNORE
+;	const CURSE
+;	const FLAIL
+;	const CONVERSION_2
+;	const AEROBLAST
+;	const COTTON_SPORE
+;	const REVERSAL
+;	const SPITE
+;	const POWDER_SNOW
+;	const PROTECT
+;	const MACH_PUNCH
+;	const SCARY_FACE
+;	const FEINT_ATTACK
+;	const SWEET_KISS
+;	const BELLY_DRUM
+;	const SLUDGE_BOMB
+;	const MUD_SLAP
+;	const OCTAZOOKA
+;	const SPIKES
+;	const ZAP_CANNON
+;	const FORESIGHT
+;	const DESTINY_BOND
+;	const PERISH_SONG
+;	const ICY_WIND
+;	const DETECT
+;	const BONE_RUSH
+;	const LOCK_ON
+;	const OUTRAGE
+;	const SANDSTORM
+;	const GIGA_DRAIN
+;	const ENDURE
+;	const CHARM
+;	const ROLLOUT
+;	const FALSE_SWIPE
+;	const SWAGGER
+;	const MILK_DRINK
+;	const SPARK
+;	const FURY_CUTTER
+;	const STEEL_WING
+;	const MEAN_LOOK
+;	const ATTRACT
+;	const SLEEP_TALK
+;	const HEAL_BELL
+;	const RETURN_MOVE
+;	const PRESENT
+;	const FRUSTRATION
+;	const SAFEGUARD
+;	const PAIN_SPLIT
+;	const SACRED_FIRE
+;	const MAGNITUDE
+;	const DYNAMIC_PUNCH
+;	const MEGAHORN
+;	const DRAGON_BREATH
+;	const BATON_PASS
+;	const ENCORE
+;	const PURSUIT
+;	const RAPID_SPIN
+;	const SWEET_SCENT
+;	const IRON_TAIL
+;	const METAL_CLAW
+;	const VITAL_THROW
+;	const MORNING_SUN
+;	const SYNTHESIS
+;	const MOONLIGHT
+;	const HIDDEN_POWER
+;	const CROSS_CHOP
+;	const TWISTER
+;	const RAIN_DANCE
+;	const SUNNY_DAY
+;	const CRUNCH
+;	const MIRROR_COAT
+;	const PSYCH_UP
+;	const EXTREME_SPEED
+;	const ANCIENTPOWER
+;	const SHADOW_BALL
+;	const FUTURE_SIGHT
+;	const ROCK_SMASH
+;	const WHIRLPOOL
+;	const BEAT_UP
 	const STRUGGLE     ; a5
 DEF NUM_ATTACKS EQU const_value - 1
 
@@ -177,6 +263,8 @@ DEF CANNOT_MOVE EQU $ff
 
 	; Moves do double duty as animation identifiers.
 
+	const_def
+	const NO_ANIM
 	const SHOWPIC_ANIM
 	const STATUS_AFFECTED_ANIM
 	const ANIM_A8
@@ -215,4 +303,4 @@ DEF CANNOT_MOVE EQU $ff
 	const ROCK_ANIM ; throw rock
 	const BAIT_ANIM ; throw bait
 
-DEF NUM_ATTACK_ANIMS EQU const_value - 1
+DEF NUM_ALTERNATIVE_ANIMS EQU const_value - 1

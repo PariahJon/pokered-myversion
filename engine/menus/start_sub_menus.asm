@@ -27,6 +27,7 @@ StartMenu_Pokemon::
 	call GBPalWhiteOutWithDelay3
 	call RestoreScreenTilesAndReloadTilePatterns
 	call LoadGBPal
+	call ReloadMapData
 	jp RedisplayStartMenu
 .chosePokemon
 	call SaveScreenTilesToBuffer1
@@ -123,7 +124,6 @@ StartMenu_Pokemon::
 	dw .cut
 	dw .fly
 	dw .surf
-	dw .surf
 	dw .strength
 	dw .flash
 	dw .dig
@@ -133,6 +133,15 @@ StartMenu_Pokemon::
 	bit BIT_THUNDERBADGE, a
 	jp z, .newBadgeRequired
 	call CheckIfInOutsideMap
+	jr z, .canFly
+	ld a, [wCurMap]
+	cp CELADON_MART_ROOF
+	jr z, .canFly
+	cp CELADON_MANSION_ROOF
+	jr z, .canFly
+	cp VERMILION_DOCK
+	jr z, .canFly
+	cp SS_ANNE_BOW
 	jr z, .canFly
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMonNicks
@@ -274,6 +283,7 @@ StartMenu_Pokemon::
 	text_end
 .goBackToMap
 	call RestoreScreenTilesAndReloadTilePatterns
+	call ReloadMapData
 	jp CloseTextDisplay
 .newBadgeRequired
 	ld hl, .newBadgeRequiredText
@@ -414,6 +424,7 @@ StartMenu_Item::
 	jp z, .partyMenuNotDisplayed
 	call GBPalWhiteOutWithDelay3
 	call RestoreScreenTilesAndReloadTilePatterns
+	call ReloadMapData
 	pop af
 	ld [wUpdateSpritesEnabled], a
 	jp StartMenu_Item
@@ -462,6 +473,9 @@ StartMenu_TrainerInfo::
 	predef DrawBadges
 	ld b, SET_PAL_TRAINER_CARD
 	call RunPaletteCommand
+	ld a, [wOnSGB]
+	and a
+	call z, Delay3
 	call GBPalNormal
 	call WaitForTextScrollButtonPress
 	call GBPalWhiteOut
@@ -469,6 +483,9 @@ StartMenu_TrainerInfo::
 	call LoadScreenTilesFromBuffer2
 	call RunDefaultPaletteCommand
 	call ReloadMapData
+	ld a, [wOnSGB]
+	and a
+	call z, Delay3
 	call LoadGBPal
 	pop af
 	ldh [hTileAnimations], a
@@ -558,7 +575,7 @@ DrawTrainerInfo:
 	ld de, wPlayTimeHours
 	lb bc, LEFT_ALIGN | 1, 3
 	call PrintNumber
-	ld [hl], $d6 ; colon tile ID
+	ld [hl], ":" ; colon tile ID
 	inc hl
 	ld de, wPlayTimeMinutes
 	lb bc, LEADING_ZEROES | 1, 2
@@ -569,13 +586,13 @@ TrainerInfo_FarCopyData:
 	jp FarCopyData2
 
 TrainerInfo_NameMoneyTimeText:
-	db   "NAME/"
-	next "MONEY/"
-	next "TIME/@"
+	db   "Name/"
+	next "Money/"
+	next "Time/@"
 
 ; $76 is a circle tile
 TrainerInfo_BadgesText:
-	db $76,"BADGES",$76,"@"
+	db $76,"Badges",$76,"@"
 
 ; draws a text box on the trainer info screen
 ; height is always 6
@@ -644,7 +661,7 @@ StartMenu_SaveReset::
 	jp nz, Init
 	predef SaveMenu
 	call LoadScreenTilesFromBuffer2
-	jp HoldTextDisplayOpen
+	jp CloseStartMenu
 
 StartMenu_Option::
 	xor a

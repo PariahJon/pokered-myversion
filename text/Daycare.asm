@@ -1,12 +1,12 @@
 _DaycareGentlemanIntroText::
-	text "I run a DAYCARE."
+	text "I run a Daycare."
 	line "Would you like me"
 	cont "to raise one of"
-	cont "your #MON?"
+	cont "your #mon?"
 	done
 
 _DaycareGentlemanWhichMonText::
-	text "Which #MON"
+	text "Which #mon"
 	line "should I raise?"
 	prompt
 
@@ -42,7 +42,7 @@ _DaycareGentlemanOweMoneyText::
 	text_bcd wDayCareTotalCost, 2 | LEADING_ZEROES | LEFT_ALIGN
 	text_start
 	line "for the return"
-	cont "of this #MON."
+	cont "of this #mon."
 	done
 
 _DaycareGentlemanGotMonBackText::

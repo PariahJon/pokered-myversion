@@ -11,6 +11,10 @@ ShowPokedexMenu:
 	inc a
 	ld [wPokedexNum], a
 	ldh [hJoy7], a
+	ld a, [wPokedexPlace1]
+	ld [wListScrollOffset], a
+	ld a, [wPokedexPlace2]
+	ld [wCurrentMenuItem], a
 .setUpGraphics
 	ld b, SET_PAL_GENERIC
 	call RunPaletteCommand
@@ -31,6 +35,10 @@ ShowPokedexMenu:
 	call HandlePokedexListMenu
 	jr c, .goToSideMenu ; if the player chose a pokemon from the list
 .exitPokedex
+	ld a, [wListScrollOffset]
+	ld [wPokedexPlace1], a
+	ld a, [wCurrentMenuItem]
+	ld [wPokedexPlace2], a
 	xor a
 	ld [wMenuWatchMovingOutOfBounds], a
 	ld [wCurrentMenuItem], a
@@ -360,19 +368,19 @@ DrawPokedexVerticalLine:
 	ret
 
 PokedexSeenText:
-	db "SEEN@"
+	db "Seen@"
 
 PokedexOwnText:
-	db "OWN@"
+	db "Own@"
 
 PokedexContentsText:
-	db "CONTENTS@"
+	db "Contents@"
 
 PokedexMenuItemsText:
-	db   "DATA"
-	next "CRY"
-	next "AREA"
-	next "QUIT@"
+	db   "Data"
+	next "Cry"
+	next "Area"
+	next "Quit@"
 
 ; tests if a pokemon's bit is set in the seen or owned pokemon bit fields
 ; INPUT:
@@ -478,7 +486,7 @@ ShowPokedexDataInternal:
 	hlcoord 2, 8
 	ld a, "№"
 	ld [hli], a
-	ld a, "<DOT>"
+	ld a, "."
 	ld [hli], a
 	ld de, wPokedexNum
 	lb bc, LEADING_ZEROES | 1, 3
@@ -558,7 +566,7 @@ ShowPokedexDataInternal:
 	inc hl
 	ld a, [hli]
 	ld [hld], a ; make space for the decimal point by moving the last digit forward one tile
-	ld [hl], "<DOT>" ; decimal point tile
+	ld [hl], "." ; decimal point tile
 	pop af
 	ldh [hDexWeight + 1], a ; restore original value of [hDexWeight + 1]
 	pop af
@@ -566,7 +574,7 @@ ShowPokedexDataInternal:
 	pop hl
 	inc hl ; hl = address of pokedex description text
 	bccoord 1, 11
-	ld a, %10
+	ld a, %11
 	ldh [hClearLetterPrintingDelayFlags], a
 	call TextCommandProcessor ; print pokedex description text
 	xor a

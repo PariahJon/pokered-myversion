@@ -20,6 +20,8 @@ EvolutionAfterBattle:
 	push hl
 	push bc
 	push de
+	ld hl, wStartBattleLevels
+	push hl
 	ld hl, wPartyCount
 	push hl
 
@@ -27,11 +29,16 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld hl, wWhichPokemon
 	inc [hl]
 	pop hl
+	pop de
+	ld a, [de]
+	ld [wTempCoins1], a
+	inc de
 	inc hl
 	ld a, [hl]
 	cp $ff ; have we reached the end of the party?
 	jp z, .done
 	ld [wEvoOldSpecies], a
+	push de
 	push hl
 	ld a, [wWhichPokemon]
 	ld c, a
@@ -93,7 +100,10 @@ Evolution_PartyMonLoop: ; loop over party mons
 	jp c, Evolution_PartyMonLoop ; if so, go the next mon
 	jr .doEvolution
 .checkItemEvo
+	ld a, [wIsInBattle]
+	and a
 	ld a, [hli]
+	jp nz, .nextEvoEntry1
 	; Bug: Wild encounters can cause stone evolutions without
 	; having any stones available. This was fixed in Yellow.
 	ld b, a ; evolution item
@@ -110,6 +120,14 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld [wCurEnemyLevel], a
 	ld a, 1
 	ld [wEvolutionOccurred], a
+
+	ld a, [wTempCoins1]
+	cp b
+	jp nc, .evoLevelRequirementSatisfied
+	ld a, b
+	ld [wTempCoins1], a
+.evoLevelRequirementSatisfied
+
 	push hl
 	ld a, [hl]
 	ld [wEvoNewSpecies], a
@@ -209,7 +227,36 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld [wPokedexNum], a
 	xor a
 	ld [wMonDataLocation], a
+
+	ld a, [wStatusFlags7]
+	bit 6, a
+	jr nz, .learnMissedMoves
+	ld a, [wIsInBattle]
+	and a
+	jr z, .notInBattle
+.learnMissedMoves
+	push bc
+	ld a, [wCurEnemyLevel]
+	ld c, a
+	ld a, [wTempCoins1]
+	ld b, a
+	dec b
+.incLevel
+	inc b
+	ld a, b
+	ld [wCurEnemyLevel], a
+	push bc
 	call LearnMoveFromLevelUp
+	pop bc
+	ld a, b
+	cp c
+	jr nz, .incLevel
+	pop bc
+	jr .skipFixEnd
+.notInBattle
+	call LearnMoveFromLevelUp
+.skipFixEnd
+
 	pop hl
 	predef SetPartyMonTypes
 	ld a, [wIsInBattle]
@@ -318,6 +365,7 @@ Evolution_ReloadTilesetTilePatterns:
 	ld a, [wLinkState]
 	cp LINK_STATE_TRADING
 	ret z
+	call GBPalWhiteOutWithDelay3
 	jp ReloadTilesetTilePatterns
 
 LearnMoveFromLevelUp:
@@ -348,6 +396,11 @@ LearnMoveFromLevelUp:
 	ld a, [hli] ; move ID
 	jr nz, .learnSetLoop
 	ld d, a ; ID of move to learn
+	push hl ; save hl before the call because the function modifies it
+	call .tryToLearn
+	pop hl ; restore hl to continue the loop
+	jr .learnSetLoop
+.tryToLearn
 	ld a, [wMonDataLocation]
 	and a
 	jr nz, .next

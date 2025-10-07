@@ -1,11 +1,11 @@
 _MtMoonB2FDomeFossilYouWantText::
 	text "You want the"
-	line "DOME FOSSIL?"
+	line "Dome Fossil?"
 	done
 
 _MtMoonB2FHelixFossilYouWantText::
 	text "You want the"
-	line "HELIX FOSSIL?"
+	line "Helix Fossil?"
 	done
 
 _MtMoonB2FReceivedFossilText::
@@ -41,9 +41,9 @@ _MtMoonB2fSuperNerdEachTakeOneText::
 
 _MtMoonB2FSuperNerdTheresAPokemonLabText::
 	text "Far away, on"
-	line "CINNABAR ISLAND,"
-	cont "there's a #MON"
-	cont "LAB."
+	line "Cinnabar Island,"
+	cont "there's a #mon"
+	cont "Lab."
 
 	para "They do research"
 	line "on regenerating"
@@ -56,7 +56,7 @@ _MtMoonB2FSuperNerdThenThisIsMineText::
 	text_end
 
 _MtMoonB2FRocket1BattleText::
-	text "TEAM ROCKET will"
+	text "Team Rocket will"
 	line "find the fossils,"
 	cont "revive and sell"
 	cont "them for cash!"
@@ -69,13 +69,13 @@ _MtMoonB2FRocket1EndBattleText::
 
 _MtMoonB2FRocket1AfterBattleText::
 	text "You made me mad!"
-	line "TEAM ROCKET will"
+	line "Team Rocket will"
 	cont "blacklist you!"
 	done
 
 _MtMoonB2FRocket2BattleText::
-	text "We, TEAM ROCKET,"
-	line "are #MON"
+	text "We, Team Rocket,"
+	line "are #mon"
 	cont "gangsters!"
 	done
 
@@ -119,7 +119,7 @@ _MtMoonB2FRocket4EndBattleText::
 	prompt
 
 _MtMoonB2FRocket4AfterBattleText::
-	text "#MON lived"
+	text "#mon lived"
 	line "here long before"
 	cont "people came."
 	done

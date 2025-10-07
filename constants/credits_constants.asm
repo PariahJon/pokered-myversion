@@ -62,8 +62,9 @@
 	const CRED_HARADA         ; $3B
 	const CRED_MURAKAWA       ; $3C
 	const CRED_FUKUI          ; $3D
-	const CRED_CLUB           ; $3E
-	const CRED_PAAD           ; $3F
+	const CRED_PERRY		  ; $3E
+	const CRED_CLUB           ; $3F
+	const CRED_PAAD           ; $40
 DEF NUM_CRED_STRINGS EQU const_value
 
 	const_def -1, -1

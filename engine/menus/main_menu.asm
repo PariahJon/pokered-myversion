@@ -113,10 +113,14 @@ MainMenu:
 	call DelayFrames
 	ld a, [wNumHoFTeams]
 	and a
+	jr z, .noHoF
+
 	jp z, SpecialEnterMap
 	ld a, [wCurMap]
 	cp HALL_OF_FAME
+	SetEvent EVENT_BEAT_ELITE4
 	jp nz, SpecialEnterMap
+.noHoF
 	xor a
 	ld [wDestinationMap], a
 	ld hl, wStatusFlags6
@@ -341,37 +345,63 @@ SpecialEnterMap::
 	jp EnterMap
 
 ContinueText:
-	db "CONTINUE"
+	db "Continue"
 	next ""
 	; fallthrough
 
 NewGameText:
-	db   "NEW GAME"
-	next "OPTION@"
+	db   "New Game"
+	next "Option@"
 
 CableClubOptionsText:
-	db   "TRADE CENTER"
-	next "COLOSSEUM"
-	next "CANCEL@"
+	db   "Trade Center"
+	next "Colosseum"
+	next "Cancel@"
 
 DisplayContinueGameInfo:
 	xor a
 	ldh [hAutoBGTransferEnabled], a
-	hlcoord 4, 7
-	ld b, 8
-	ld c, 14
+;	hlcoord 4, 7
+;	ld b, 8
+;	ld c, 14
+	
+	hlcoord 2, 6
+	ld b, 10
+	ld c, 16
+	
 	call TextBoxBorder
-	hlcoord 5, 9
+	ld a, [wCurMap]
+	ld e, a
+	farcall GetMapName
+	hlcoord 3, 8
+	ld de, wNameBuffer
+	call PlaceString
+;	hlcoord 5, 9
+
+	hlcoord 3, 10
+	
 	ld de, SaveScreenInfoText
 	call PlaceString
-	hlcoord 12, 9
+;	hlcoord 12, 9
+
+	hlcoord 12, 10
+
 	ld de, wPlayerName
 	call PlaceString
-	hlcoord 17, 11
+;	hlcoord 17, 11
+
+	hlcoord 17, 12
+
 	call PrintNumBadges
-	hlcoord 16, 13
+;	hlcoord 16, 13
+
+	hlcoord 16, 14
+
 	call PrintNumOwnedMons
-	hlcoord 13, 15
+;	hlcoord 13, 15
+
+	hlcoord 13, 16
+
 	call PrintPlayTime
 	ld a, 1
 	ldh [hAutoBGTransferEnabled], a
@@ -381,23 +411,49 @@ DisplayContinueGameInfo:
 PrintSaveScreenText:
 	xor a
 	ldh [hAutoBGTransferEnabled], a
-	hlcoord 4, 0
-	ld b, $8
-	ld c, $e
+;	hlcoord 4, 0
+;	ld b, $8
+;	ld c, $e
+
+	hlcoord 2, 0
+	ld b, 10
+	ld c, 16
+
 	call TextBoxBorder
 	call LoadTextBoxTilePatterns
 	call UpdateSprites
-	hlcoord 5, 2
+	ld a, [wCurMap]
+	ld e, a
+	farcall GetMapName
+	hlcoord 3, 2
+	ld de, wNameBuffer
+	call PlaceString
+;	hlcoord 5, 2
+
+	hlcoord 3, 4
+
 	ld de, SaveScreenInfoText
 	call PlaceString
-	hlcoord 12, 2
+;	hlcoord 12, 2
+
+	hlcoord 12, 4
+
 	ld de, wPlayerName
 	call PlaceString
-	hlcoord 17, 4
+;	hlcoord 17, 4
+
+	hlcoord 17, 6
+
 	call PrintNumBadges
-	hlcoord 16, 6
+;	hlcoord 16, 6
+
+	hlcoord 16, 8
+
 	call PrintNumOwnedMons
-	hlcoord 13, 8
+;	hlcoord 13, 8
+
+	hlcoord 13, 10
+
 	call PrintPlayTime
 	ld a, $1
 	ldh [hAutoBGTransferEnabled], a
@@ -428,17 +484,17 @@ PrintPlayTime:
 	ld de, wPlayTimeHours
 	lb bc, 1, 3
 	call PrintNumber
-	ld [hl], $6d
+	ld [hl], ":"
 	inc hl
 	ld de, wPlayTimeMinutes
 	lb bc, LEADING_ZEROES | 1, 2
 	jp PrintNumber
 
 SaveScreenInfoText:
-	db   "PLAYER"
-	next "BADGES    "
-	next "#DEX    "
-	next "TIME@"
+	db   "Player"
+	next "Badges    "
+	next "#Dex    "
+	next "Time@"
 
 DisplayOptionMenu:
 	hlcoord 0, 0
@@ -594,19 +650,19 @@ DisplayOptionMenu:
 	jp .eraseOldMenuCursor
 
 TextSpeedOptionText:
-	db   "TEXT SPEED"
-	next " FAST  MEDIUM SLOW@"
+	db   "Text Speed"
+	next " Fast  Medium Slow@"
 
 BattleAnimationOptionText:
-	db   "BATTLE ANIMATION"
-	next " ON       OFF@"
+	db   "Battle Animation"
+	next " On       Off@"
 
 BattleStyleOptionText:
-	db   "BATTLE STYLE"
-	next " SHIFT    SET@"
+	db   "Battle Style"
+	next " Shift    Set@"
 
 OptionMenuCancelText:
-	db "CANCEL@"
+	db "Cancel@"
 
 ; sets the options variable according to the current placement of the menu cursors in the options menu
 SetOptionsFromCursorPositions:

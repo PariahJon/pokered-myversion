@@ -3,18 +3,18 @@ _ViridianForestYoungster1Text::
 	line "some friends!"
 
 	para "They're out for"
-	line "#MON fights!"
+	line "#mon fights!"
 	done
 
 _ViridianForestYoungster2BattleText::
 	text "Hey! You have"
-	line "#MON! Come on!"
+	line "#mon! Come on!"
 	cont "Let's battle'em!"
 	done
 
 _ViridianForestYoungster2EndBattleText::
 	text "No!"
-	line "CATERPIE can't"
+	line "Caterpie can't"
 	cont "cut it!"
 	prompt
 
@@ -26,13 +26,13 @@ _ViridianForestYoungster2AfterBattleText::
 _ViridianForestYoungster3BattleText::
 	text "Yo! You can't jam"
 	line "out if you're a"
-	cont "#MON trainer!"
+	cont "#mon trainer!"
 	done
 
 _ViridianForestYoungster3EndBattleText::
 	text "Huh?"
 	line "I ran out of"
-	cont "#MON!"
+	cont "#mon!"
 	prompt
 
 _ViridianForestYoungster3AfterBattleText::
@@ -64,15 +64,15 @@ _ViridianForestYoungster4AfterBattleText::
 
 _ViridianForestYoungster5Text::
 	text "I ran out of #"
-	line "BALLs to catch"
-	cont "#MON with!"
+	line "Balls to catch"
+	cont "#mon with!"
 
 	para "You should carry"
 	line "extras!"
 	done
 
 _ViridianForestTrainerTips1Text::
-	text "TRAINER TIPS"
+	text "Trainer Tips"
 
 	para "If you want to"
 	line "avoid battles,"
@@ -82,33 +82,33 @@ _ViridianForestTrainerTips1Text::
 
 _ViridianForestUseAntidoteSignText::
 	text "For poison, use"
-	line "ANTIDOTE! Get it"
-	cont "at #MON MARTs!"
+	line "Antidote! Get it"
+	cont "at #mon Marts!"
 	done
 
 _ViridianForestTrainerTips2Text::
-	text "TRAINER TIPS"
+	text "Trainer Tips"
 
-	para "Contact PROF.OAK"
+	para "Contact Prof.Oak"
 	line "via PC to get"
-	cont "your #DEX"
+	cont "your #Dex"
 	cont "evaluated!"
 	done
 
 _ViridianForestTrainerTips3Text::
-	text "TRAINER TIPS"
+	text "Trainer Tips"
 
 	para "No stealing of"
-	line "#MON from"
+	line "#mon from"
 	cont "other trainers!"
 	cont "Catch only wild"
-	cont "#MON!"
+	cont "#mon!"
 	done
 
 _ViridianForestTrainerTips4Text::
-	text "TRAINER TIPS"
+	text "Trainer Tips"
 
-	para "Weaken #MON"
+	para "Weaken #mon"
 	line "before attempting"
 	cont "capture!"
 
@@ -117,7 +117,7 @@ _ViridianForestTrainerTips4Text::
 	done
 
 _ViridianForestLeavingSignText::
-	text "LEAVING"
-	line "VIRIDIAN FOREST"
-	cont "PEWTER CITY AHEAD"
+	text "Leaving"
+	line "Viridian Forest"
+	cont "Pewter City Ahead"
 	done

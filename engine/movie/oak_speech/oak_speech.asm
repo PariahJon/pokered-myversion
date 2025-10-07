@@ -3,6 +3,7 @@ PrepareOakSpeech:
 	push af
 	ld a, [wOptions]
 	push af
+IF DEF(_DEBUG)
 	; Retrieve BIT_DEBUG_MODE set in DebugMenu for StartNewGameDebug.
 	; BUG: StartNewGame carries over BIT_ALWAYS_ON_BIKE from previous save files,
 	; which causes CheckForceBikeOrSurf to not return.
@@ -10,6 +11,7 @@ PrepareOakSpeech:
 	; In non-debug builds, the instructions can be removed.
 	ld a, [wStatusFlags6]
 	push af
+ENDC
 	ld hl, wPlayerName
 	ld bc, wBoxDataEnd - wPlayerName
 	xor a
@@ -18,8 +20,10 @@ PrepareOakSpeech:
 	ld bc, wSpriteDataEnd - wSpriteDataStart
 	xor a
 	call FillMemory
+IF DEF(_DEBUG)
 	pop af
 	ld [wStatusFlags6], a
+ENDC
 	pop af
 	ld [wOptions], a
 	pop af
@@ -166,7 +170,7 @@ OakSpeechText1:
 OakSpeechText2:
 	text_far _OakSpeechText2A
 	; BUG: The cry played does not match the sprite displayed.
-	sound_cry_nidorina
+	sound_cry_nidorino
 	text_far _OakSpeechText2B
 	text_end
 IntroducePlayerText:

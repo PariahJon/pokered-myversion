@@ -164,8 +164,97 @@ AttackAnimationPointers:
 	dw SuperFangAnim
 	dw SlashAnim
 	dw SubstituteAnim
+;	dw SketchAnim
+;	dw TripleKickAnim
+;	dw ThiefAnim
+;	dw SpiderWebAnim
+;	dw MindReaderAnim
+;	dw NightmareAnim
+;	dw FlameWheelAnim
+;	dw SnoreAnim
+;	dw CurseAnim
+;	dw FlailAnim
+;	dw Conversion2Anim
+;	dw AeroblastAnim
+;	dw CottonSporeAnim
+;	dw ReversalAnim
+;	dw SpiteAnim
+;	dw PowderSnowAnim
+;	dw ProtectAnim
+;	dw MachPunchAnim
+;	dw ScaryFaceAnim
+;	dw FeintAttackAnim
+;	dw SweetKissAnim
+;	dw BellyDrumAnim
+;	dw SludgeBombAnim
+;	dw MudSlapAnim
+;	dw OctazookaAnim
+;	dw SpikesAnim
+;	dw ZapCannonAnim
+;	dw ForesightAnim
+;	dw DestinyBondAnim
+;	dw PerishSongAnim
+;	dw IcyWindAnim
+;	dw DetectAnim
+;	dw BoneRushAnim
+;	dw LockOnAnim
+;	dw OutrageAnim
+;	dw SandstormAnim
+;	dw GigaDrainAnim
+;	dw EndureAnim
+;	dw CharmAnim
+;	dw RolloutAnim
+;	dw FalseSwipeAnim
+;	dw SwaggerAnim
+;	dw MilkDrinkAnim
+;	dw SparkAnim
+;	dw FuryCutterAnim
+;	dw SteelWingAnim
+;	dw MeanLookAnim
+;	dw AttractAnim
+;	dw SleepTalkAnim
+;	dw HealBellAnim
+;	dw ReturnAnim
+;	dw PresentAnim
+;	dw FrustrationAnim
+;	dw SafeguardAnim
+;	dw PainSplitAnim
+;	dw SacredFireAnim
+;	dw MagnitudeAnim
+;	dw DynamicPunchAnim
+;	dw MegahornAnim
+;	dw DragonBreathAnim
+;	dw BatonPassAnim
+;	dw EncoreAnim
+;	dw PursuitAnim
+;	dw RapidSpinAnim
+;	dw SweetScentAnim
+;	dw IronTailAnim
+;	dw MetalClawAnim
+;	dw VitalThrowAnim
+;	dw MorningSunAnim
+;	dw SynthesisAnim
+;	dw MoonlightAnim
+;	dw HiddenPowerAnim
+;	dw CrossChopAnim
+;	dw TwisterAnim
+;	dw RainDanceAnim
+;	dw SunnyDayAnim
+;	dw CrunchAnim
+;	dw MirrorCoatAnim
+;	dw PsychUpAnim
+;	dw ExtremeSpeedAnim
+;	dw AncientPowerAnim
+;	dw ShadowBallAnim
+;	dw FutureSightAnim
+;	dw RockSmashAnim
+;	dw WhirlpoolAnim
+;	dw BeatUpAnim
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
+
+AlternativeAnimationPointers:
+	table_width 2
 	dw ShowPicAnim
 	dw EnemyFlashAnim
 	dw PlayerFlashAnim
@@ -203,7 +292,7 @@ AttackAnimationPointers:
 	dw HidePicAnim
 	dw ThrowRockAnim
 	dw ThrowBaitAnim
-	assert_table_length NUM_ATTACK_ANIMS
+	assert_table_length NUM_ALTERNATIVE_ANIMS
 	dw ZigZagScreenAnim
 
 ; each animation is a list of subanimations
@@ -233,6 +322,92 @@ ZigZagScreenAnim:
 	db -1 ; end
 
 PoundAnim:
+;SketchAnim:
+;TripleKickAnim:
+;ThiefAnim:
+;SpiderWebAnim:
+;MindReaderAnim:
+;NightmareAnim:
+;FlameWheelAnim:
+;SnoreAnim:
+;CurseAnim:
+;FlailAnim:
+;Conversion2Anim:
+;AeroblastAnim:
+;CottonSporeAnim:
+;ReversalAnim:
+;SpiteAnim:
+;PowderSnowAnim:
+;ProtectAnim:
+;MachPunchAnim:
+;ScaryFaceAnim:
+;FeintAttackAnim:
+;SweetKissAnim:
+;BellyDrumAnim:
+;SludgeBombAnim:
+;MudSlapAnim:
+;OctazookaAnim:
+;SpikesAnim:
+;ZapCannonAnim:
+;ForesightAnim:
+;DestinyBondAnim:
+;PerishSongAnim:
+;IcyWindAnim:
+;DetectAnim:
+;BoneRushAnim:
+;LockOnAnim:
+;OutrageAnim:
+;SandstormAnim:
+;GigaDrainAnim:
+;EndureAnim:
+;CharmAnim:
+;RolloutAnim:
+;FalseSwipeAnim:
+;SwaggerAnim:
+;MilkDrinkAnim:
+;SparkAnim:
+;FuryCutterAnim:
+;SteelWingAnim:
+;MeanLookAnim:
+;AttractAnim:
+;SleepTalkAnim:
+;HealBellAnim:
+;ReturnAnim:
+;PresentAnim:
+;FrustrationAnim:
+;SafeguardAnim:
+;PainSplitAnim:
+;SacredFireAnim:
+;MagnitudeAnim:
+;DynamicPunchAnim:
+;MegahornAnim:
+;DragonBreathAnim:
+;BatonPassAnim:
+;EncoreAnim:
+;PursuitAnim:
+;RapidSpinAnim:
+;SweetScentAnim:
+;IronTailAnim:
+;MetalClawAnim:
+;VitalThrowAnim:
+;MorningSunAnim:
+;SynthesisAnim:
+;MoonlightAnim:
+;HiddenPowerAnim:
+;CrossChopAnim:
+;TwisterAnim:
+;RainDanceAnim:
+;SunnyDayAnim:
+;CrunchAnim:
+;MirrorCoatAnim:
+;PsychUpAnim:
+;ExtremeSpeedAnim:
+;AncientPowerAnim:
+;ShadowBallAnim:
+;FutureSightAnim:
+;RockSmashAnim:
+;WhirlpoolAnim:
+;BeatUpAnim:
 StruggleAnim:
 	battle_anim POUND, SUBANIM_0_STAR_TWICE, 0, 8
 	db -1 ; end

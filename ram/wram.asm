@@ -248,7 +248,8 @@ wPlayerMonNumber:: db
 ; the address of the menu cursor's current location within wTileMap
 wMenuCursorLocation:: dw
 
-	ds 2
+wPokedexPlace1:: db
+wPokedexPlace2:: db
 
 ; how many times should HandleMenuInput poll the joypad state before it returns?
 wMenuJoypadPollCount:: db
@@ -447,9 +448,7 @@ wPlayerSubstituteHP:: db
 wEnemySubstituteHP:: db
 
 ; used for TestBattle (unused in non-debug builds)
-wTestBattlePlayerSelectedMove:: db
-
-	ds 1
+	ds 2
 
 ; 0=regular, 1=mimic, 2=above message box (relearn, heal pp..)
 wMoveMenuType:: db
@@ -715,6 +714,7 @@ wSlotMachineWheel2TopTile:: db
 wSlotMachineWheel3BottomTile:: db
 wSlotMachineWheel3MiddleTile:: db
 wSlotMachineWheel3TopTile:: db
+wStartBattleLevels:: ds PARTY_LENGTH
 wPayoutCoins:: dw
 ; These flags are set randomly and control when the wheels stop.
 ; bit 6: allow the player to win in general
@@ -1215,7 +1215,8 @@ NEXTU
 wLearnMoveMonName:: ds NAME_LENGTH
 ENDU
 
-	ds 2
+wCurPartyLevel:: db
+wTempSpecies::
 
 ; money received after battle = base money × level of last enemy mon
 wTrainerBaseMoney:: dw ; BCD
@@ -1354,7 +1355,9 @@ wTempTilesetNumTiles:: db
 ; so that it can be restored when the player is done with the pokemart NPC
 wSavedListScrollOffset:: db
 
-	ds 2
+wAltAnimationID:: db
+
+	ds 1
 
 ; base coordinates of frame block
 wBaseCoordX:: db
@@ -1701,7 +1704,9 @@ wPseudoItemID:: db
 
 wUnusedAlreadyOwnedFlag:: db
 
-	ds 2
+wIsTrainerBattle:: db
+
+wWasTrainerBattle:: db
 
 wEvoStoneItemID:: db
 
@@ -1749,9 +1754,7 @@ wPokedexOwnedEnd::
 wPokedexSeen:: flag_array NUM_POKEMON
 wPokedexSeenEnd::
 
-wNumBagItems:: db
-; item, quantity
-wBagItems:: ds BAG_ITEM_CAPACITY * 2 + 1
+	ds 42
 
 wPlayerMoney:: ds 3 ; BCD
 
@@ -1826,7 +1829,20 @@ wWarpEntries:: ds MAX_WARP_EVENTS * 4 ; Y, X, warp ID, map ID
 ; if $ff, the player's coordinates are not updated when entering the map
 wDestinationWarpID:: db
 
+	;;;;;;;;; note: CHANGED: this empty space is now used for bigger bag space
+UNION
+	; original size of this empty space
+
 	ds 128
+
+NEXTU
+wNumBagItems:: db
+	; item, quantity
+wBagItems:: ds BAG_ITEM_CAPACITY * 2 + 1 ; now holds 50 items
+       ;;;;
+       ; 26 bytes left to use
+ENDU
+       ;;;;;;;;;;
 
 ; number of signs in the current map (up to MAX_BG_EVENTS)
 wNumSigns:: db
@@ -1982,7 +1998,7 @@ wRocketHideoutB1FCurScript:: db
 wRocketHideoutB2FCurScript:: db
 wRocketHideoutB3FCurScript:: db
 wRocketHideoutB4FCurScript:: db
-	ds 1
+wVermilionDockCurScript:: db
 wRoute6GateCurScript:: db
 wRoute8GateCurScript:: db
 	ds 1
@@ -2244,6 +2260,11 @@ wBoxMonNicksEnd::
 
 wBoxDataEnd::
 
+wEXPBarPixelLength::  ds 1
+wEXPBarBaseEXP::      ds 3
+wEXPBarCurEXP::       ds 3
+wEXPBarNeededEXP::    ds 3
+wEXPBarKeepFullFlag:: ds 1
 
 SECTION "Stack", WRAM0
 

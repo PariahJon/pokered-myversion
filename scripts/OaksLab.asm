@@ -119,6 +119,7 @@ OaksLabFollowedOakScript:
 	call UpdateSprites
 	ld hl, wStatusFlags7
 	res BIT_NO_MAP_MUSIC, [hl]
+	call DelayFrame
 	call PlayDefaultMusic
 
 	ld a, SCRIPT_OAKSLAB_OAK_CHOOSE_MON_SPEECH
@@ -382,6 +383,8 @@ OaksLabRivalStartBattleScript:
 	ret nz
 
 	; define which team rival uses, and fight it
+	ld a, 1
+	ld [wIsTrainerBattle], a
 	ld a, OPP_RIVAL1
 	ld [wCurOpponent], a
 	ld a, [wRivalStarter]
@@ -416,6 +419,8 @@ OaksLabRivalStartBattleScript:
 	ret
 
 OaksLabRivalEndBattleScript:
+	xor a
+	ld [wIsTrainerBattle], a
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	ld a, PLAYER_DIR_UP

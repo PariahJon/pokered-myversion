@@ -51,8 +51,11 @@ VermilionCityDefaultScript:
 	ld a, TEXT_VERMILIONCITY_SAILOR1
 	ldh [hTextID], a
 	call DisplayTextID
+	CheckEvent EVENT_BEAT_ELITE4
+	jr nz, .ssanne_returning
 	CheckEvent EVENT_SS_ANNE_LEFT
 	jr nz, .ship_departed
+.ssanne_returning
 	ld b, S_S_TICKET
 	predef GetQuantityOfItemInBag
 	ld a, b
@@ -157,8 +160,11 @@ VermilionCityGambler1Text:
 
 VermilionCitySailor1Text:
 	text_asm
+	CheckEvent EVENT_BEAT_ELITE4
+	jr nz, .ssanne_returns
 	CheckEvent EVENT_SS_ANNE_LEFT
 	jr nz, .ship_departed
+.ssanne_returns
 	ld a, [wSpritePlayerStateData1FacingDirection]
 	cp SPRITE_FACING_RIGHT
 	jr z, .greet_player
