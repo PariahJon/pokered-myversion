@@ -113,11 +113,10 @@ MainMenu:
 	call DelayFrames
 	ld a, [wNumHoFTeams]
 	and a
-	jr z, .noHoF
-
 	jp z, SpecialEnterMap
 	ld a, [wCurMap]
 	cp HALL_OF_FAME
+	jr z, .noHoF
 	SetEvent EVENT_BEAT_ELITE4
 	jp nz, SpecialEnterMap
 .noHoF
