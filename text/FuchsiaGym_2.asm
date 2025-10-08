@@ -12,7 +12,7 @@ _FuchsiaGymKogaPostBattleAdviceText::
 _FuchsiaGymKogaSoulBadgeInfoText::
 	text "Now that you have"
 	line "the SoulBadge,"
-	cont "the Defense of"
+	cont "the Speed of"
 	cont "your #mon"
 	cont "increases!"
 
