@@ -4066,10 +4066,16 @@ PrintMoveFailureText:
 	cp JUMP_KICK_EFFECT
 	ret nz
 
+	ld a, [wUnusedMusicByte]
+	set 7, a
+	ld [wUnusedMusicByte], a
+
 	; if you get here, the mon used jump kick or hi jump kick and missed
-	ld hl, wDamage ; since the move missed, wDamage will always contain 0 at this point.
+;	ld hl, wDamage ; since the move missed, wDamage will always contain 0 at this point.
 	                ; Thus, recoil damage will always be equal to 1
 	                ; even if it was intended to be potential damage/8.
+	ld hl, wUnusedCardKeyGateID
+
 	ld a, [hli]
 	ld b, [hl]
 	srl a
