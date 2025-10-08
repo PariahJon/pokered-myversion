@@ -105,7 +105,7 @@ _SafariZoneLowCostText1::
 
 _SafariZoneLowCostText2::
 	text "But, I can't give"
-	line "you all 30 BALLs."
+	line "you all 30 Balls."
 	done
 
 _SafariZoneLowCostText3::
@@ -140,6 +140,6 @@ _SafariZoneLowCostText7::
 	done
 
 _SafariZoneLowCostText8::
-	text "Read my lips, NO!"
+	text "Read my lips, No!"
 	line "Get it?"
 	done
