@@ -43,7 +43,7 @@ ItemNames::
 	li "Dome Fossil"
 	li "Helix Fossil"
 	li "Secret Key"
-	li "?????" ; ITEM_2C
+	li "Hot Tea" ; ITEM_2C
 	li "Bike Voucher"
 	li "X Accuracy"
 	li "Leaf Stone"

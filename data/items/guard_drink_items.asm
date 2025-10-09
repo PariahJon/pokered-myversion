@@ -1,5 +1,3 @@
 GuardDrinksList:
-	db FRESH_WATER
-	db SODA_POP
-	db LEMONADE
+	db HOT_TEA
 	db 0 ; end

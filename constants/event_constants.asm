@@ -777,6 +777,7 @@ DEF INDIGO_PLATEAU_EVENTS_END EQU const_value - 1
 
 ; End of events
 	const EVENT_BEAT_ELITE4
+	const EVENT_GOT_HOT_TEA
 
 	const_next $A00
 DEF NUM_EVENTS EQU const_value
