@@ -12,7 +12,7 @@ _SaffronGateGuardImParchedText::
 	line "I'm parched!"
 	cont "..."
 	cont "Huh? I can have"
-	cont "this drink?"
+	cont "this Hot Tea?"
 	cont "Gee, thanks!@"
 	text_end
 
@@ -34,5 +34,5 @@ _SaffronGateGuardYouCanGoOnThroughText::
 
 _SaffronGateGuardThanksForTheDrinkText::
 	text "Hi, thanks for"
-	line "the cool drinks!"
+	line "the Hot Tea!"
 	done
