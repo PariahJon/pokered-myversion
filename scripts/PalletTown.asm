@@ -125,6 +125,20 @@ PalletTownPlayerFollowsOakScript:
 	and a ; is the movement script over?
 	ret nz
 
+	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB
+	jr nz, .followed_oak
+	ld hl, wMovementFlags
+	set 1, [hl]
+	ld a, $1
+	ld [wSimulatedJoypadStatesIndex], a
+	ld a, PAD_LEFT
+	ld [wSimulatedJoypadStatesEnd], a
+	xor a
+	ld [wSpritePlayerStateData1ImageIndex], a
+	jp StartSimulatingJoypadStates
+	
+.followed_oak
+
 	; trigger the next script
 	ld a, SCRIPT_PALLETTOWN_DAISY
 	ld [wPalletTownCurScript], a
