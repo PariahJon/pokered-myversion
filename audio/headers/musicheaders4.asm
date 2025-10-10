@@ -1,8 +1,12 @@
 Music_Audio4Start::
 Music_UnusedSong::
-	audio Music_UnusedSong, Ch1, Ch2
+	channel_count 2
+	channel 1, Music_UnusedSong_Ch1
+	channel 2, Music_UnusedSong_Ch2
 Music_UnusedSong_L::
-	audio Music_UnusedSong, Ch1
+	channel_count 1
+	channel 1, Music_UnusedSong_Ch1
 Music_UnusedSong_R::
-	audio Music_UnusedSong, Ch2
+	channel_count 1
+	channel 1, Music_UnusedSong_Ch2
 Music_AudioEnd::
