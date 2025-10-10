@@ -378,6 +378,9 @@ SECTION "Audio Engine 3", ROMX
 INCLUDE "audio/pokedex_rating_sfx.asm"
 INCLUDE "audio/engine_3.asm"
 
+SECTION "Audio Engine 4", ROMX
+INCLUDE "audio/engine_4.asm"
+INCLUDE "audio/headers/sfxheaders4.asm"
 
 SECTION "Music 1", ROMX
 

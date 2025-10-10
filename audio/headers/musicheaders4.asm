@@ -9,4 +9,4 @@ Music_UnusedSong_L::
 Music_UnusedSong_R::
 	channel_count 1
 	channel 1, Music_UnusedSong_Ch2
-Music_AudioEnd::
+Music_Audio4End::
