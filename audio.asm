@@ -17,6 +17,9 @@ INCLUDE "audio/headers/musicheaders2.asm"
 SECTION "Music Headers 3", ROMX
 INCLUDE "audio/headers/musicheaders3.asm"
 
+SECTION "Music Headers 4", ROMX
+INCLUDE "audio/headers/musicheaders4.asm"
+
 
 SECTION "Sound Effects 1", ROMX
 
