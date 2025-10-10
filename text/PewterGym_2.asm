@@ -36,6 +36,11 @@ _TM34ExplanationText::
 	cont "a new technique,"
 	cont "pick the #mon"
 	cont "carefully!"
+	
+	para "Or, at least you"
+	line "used to only be"
+	cont "able to teach it"
+	cont "to one #mon."
 
 	para "TM34 contains"
 	line "Bide!"

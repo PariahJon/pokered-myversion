@@ -41,7 +41,7 @@
 ;	charmap "<BOLD_S>",  $6a
 ;	charmap "<BOLD_L>",  $6b ; unused
 ;	charmap "<BOLD_M>",  $6c ; unused
-	charmap "<COLON>",   $6d ; colon with tinier dots than ":"
+;	charmap "<COLON>",   $6d ; colon with tinier dots than ":"
 ;	charmap "ぃ",         $6e ; hiragana small i, unused
 ;	charmap "ぅ",         $6f ; hiragana small u, unused
 ;	charmap "‘",         $70 ; opening single quote
