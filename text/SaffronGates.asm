@@ -5,6 +5,12 @@ _SaffronGateGuardGeeImThirstyText::
 
 	para "Oh wait there,"
 	line "the road's closed."
+	
+	para "Maybe a peppermint"
+	line "tea would be nice."
+	cont "..."
+	
+	para "What?"
 	done
 
 _SaffronGateGuardImParchedText::
