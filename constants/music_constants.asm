@@ -57,11 +57,11 @@ ENDM
 	music_const MUSIC_MEET_MALE_TRAINER,   Music_MeetMaleTrainer
 	
 	;AUDIO_4
-	music_const MUSIC4_FIRST_ENTRY,		   Music_Audio4Start
-	music_const MUSIC_UNUSED_SONG,		   Music_UnusedSong
-	music_const MUSIC_UNUSED_SONG_L,	   Music_UnusedSong_L
-	music_const MUSIC_UNUSED_SONG_R, 	   Music_UnusedSong_R
-	music_const MUSIC4_END,				   Music_Audio4End
+;	music_const MUSIC4_FIRST_ENTRY,		   Music_Audio4Start
+;	music_const MUSIC_UNUSED_SONG,		   Music_UnusedSong
+;	music_const MUSIC_UNUSED_SONG_L,	   Music_UnusedSong_L
+;	music_const MUSIC_UNUSED_SONG_R, 	   Music_UnusedSong_R
+;	music_const MUSIC4_END,				   Music_Audio4End
 
 	; AUDIO_1 AUDIO_2 AUDIO_3
 DEF NOISE_INSTRUMENTS_START EQUS "SFX_NOISE_INSTRUMENT01"
