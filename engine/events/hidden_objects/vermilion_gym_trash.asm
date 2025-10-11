@@ -101,6 +101,8 @@ GymTrashScript:
 	ld hl, wCurrentMapScriptFlags
 	set BIT_CUR_MAP_LOADED_2, [hl]
 
+	tx_pre_id VermilionGymTrashSuccessText2
+	call PrintPredefTextID
 	tx_pre_id VermilionGymTrashSuccessText3
 
 .done
@@ -141,7 +143,7 @@ VermilionGymTrashSuccessText1::
 ; unused
 VermilionGymTrashSuccessText2::
 	text_far _VermilionGymTrashSuccessText2
-	text_end
+;	text_end
 
 ; unused
 VermilionGymTrashSuccessPlaySfx:
