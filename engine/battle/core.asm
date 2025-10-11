@@ -1546,6 +1546,9 @@ HasMonFainted:
 	ld a, [wFirstMonsNotOutYet]
 	and a
 	jr nz, .done
+	
+	farcall RefreshPartyMenu
+	
 	ld hl, NoWillText
 	call PrintText
 .done
@@ -2415,10 +2418,11 @@ PartyMenuOrRockOrRun:
 	call GBPalNormal
 	jp DisplayBattleMenu
 .partyMonDeselected
-	hlcoord 11, 11
-	ld bc, 6 * SCREEN_WIDTH + 9
-	ld a, " "
-	call FillMemory
+;	hlcoord 11, 11
+;	ld bc, 6 * SCREEN_WIDTH + 9
+;	ld a, " "
+;	call FillMemory
+
 	xor a ; NORMAL_PARTY_MENU
 	ld [wPartyMenuTypeOrMessageID], a
 	call GoBackToPartyMenu
@@ -2494,6 +2498,9 @@ PartyMenuOrRockOrRun:
 	cp d ; check if the mon to switch to is already out
 	jr nz, .notAlreadyOut
 ; mon is already out
+
+	farcall RefreshPartyMenu
+
 	ld hl, AlreadyOutText
 	call PrintText
 	jp .partyMonDeselected

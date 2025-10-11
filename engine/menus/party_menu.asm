@@ -233,6 +233,11 @@ PartyMenuMessagePointers:
 	dw PartyMenuUseTMText
 	dw PartyMenuSwapMonText
 	dw PartyMenuItemUseText
+	
+	dw PartyMenuBlankText
+	
+PartyMenuBlankText:
+	text_end
 
 PartyMenuNormalText:
 	text_far _PartyMenuNormalText

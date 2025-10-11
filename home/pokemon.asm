@@ -457,3 +457,13 @@ GetPartyMonName::
 	pop bc
 	pop hl
 	ret
+
+RefreshPartyMenu::
+	ld a, [wPartyMenuTypeOrMessageID]
+	push af
+	ld a, 6
+	ld [wPartyMenuTypeOrMessageID], a
+	call RedrawPartyMenu
+	pop af
+	ld [wPartyMenuTypeOrMessageID], a
+	ret

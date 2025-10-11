@@ -452,7 +452,7 @@ InitializeSpriteStatus:
 	ld a, $8
 	ld [hli], a   ; [x#SPRITESTATEDATA2_YDISPLACEMENT] = 8
 	ld [hl], a    ; [x#SPRITESTATEDATA2_XDISPLACEMENT] = 8
-	ret
+;	ret
 
 ; calculates the sprite's screen position from its map position and the player position
 InitializeSpriteScreenPosition:
