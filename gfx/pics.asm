@@ -379,4 +379,5 @@ GhostPic::             INCBIN "gfx/battle/ghost.pic"
 
 RedPicBack::           INCBIN "gfx/player/redb.pic"
 OldManPicBack::        INCBIN "gfx/battle/oldmanb.pic"
-
+INCLUDE "data/text/TMHM_Names.asm"
+TMHMNamesEnd::

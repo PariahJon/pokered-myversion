@@ -144,8 +144,17 @@ DisplayListMenuIDLoop::
 	ld [wNameListIndex], a
 	ld a, ITEM_NAME
 	ld [wNameListType], a
+	
+	cp CUT
+	
 	ld a, BANK(ItemNames)
 	ld [wPredefBank], a
+	
+	jr c, .goGetName
+	ld a, BANK(TMHMNames)
+	ld [wPredefBank], a
+.goGetName
+	
 	call GetName
 	jr .storeChosenEntry
 .pokemonList
