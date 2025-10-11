@@ -396,7 +396,8 @@ hFieldMoveMonMenuTopMenuItemX:: db
 hJoyInput:: db
 
 hDisableJoypadPolling:: db
+hFlags:: db
 
-	ds 5
+	ds 4
 
 ENDSECTION

@@ -36,6 +36,17 @@ Audio2_UpdateMusic::
 	jr nz, .loop
 	ret
 
+Music_GetKeyItemInBattle::
+	ld a, SFX_CAUGHT_MON
+	call PlaySoundWaitForCurrent
+	ld hl, wChannelCommandPointers + CHAN4 * 2
+	ld de, SFX_UnusedFanfare_Ch5
+	call Audio2_OverwriteChannelPointer
+	ld de, SFX_UnusedFanfare_Ch6
+	call Audio2_OverwriteChannelPointer
+	ld de, SFX_UnusedFanfare_Ch7
+	jp Audio2_OverwriteChannelPointer
+	
 ; this routine checks flags for music effects currently applied
 ; to the channel and calls certain functions based on flags.
 Audio2_ApplyMusicAffects:

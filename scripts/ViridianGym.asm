@@ -1,6 +1,12 @@
 ViridianGym_Script:
 	ld hl, .CityName
+	CheckEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
+	jr nz, .beatGiovanni
 	ld de, .LeaderName
+	jp .done
+.beatGiovanni
+	ld de, .knownLeader
+.done
 	call LoadGymLeaderAndCityName
 	call EnableAutoTextBoxDrawing
 	ld hl, ViridianGymTrainerHeaders
@@ -14,6 +20,8 @@ ViridianGym_Script:
 	db "Viridian City@"
 
 .LeaderName:
+	db "Unknown@"
+.knownLeader:
 	db "Giovanni@"
 
 ViridianGymResetScripts:

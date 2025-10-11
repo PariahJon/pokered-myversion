@@ -526,9 +526,16 @@ TextCommand_SOUND::
 	jr z, .pokemonCry
 	cp TX_SOUND_CRY_DEWGONG
 	jr z, .pokemonCry
+	cp TX_SOUND_GET_KEY_ITEM
+	jr z, .keyItem
+.playNormally
+	ld a, [wOptions]
+	and BIT_TEXT_DELAY
+	call z, WaitForSoundToFinish
 	ld a, [hl]
 	call PlaySound
 	call WaitForSoundToFinish
+.finishNormally
 	pop hl
 	pop bc
 	jp NextTextCommand
@@ -541,6 +548,20 @@ TextCommand_SOUND::
 	pop hl
 	pop bc
 	jp NextTextCommand
+.keyItem
+	push de
+	ld a, [wAudioROMBank]
+	cp BANK(Audio2_PlaySound)
+	pop de
+	jr nz, .playNormally
+	push de
+	callfar Music_GetKeyItemInBattle
+.musicWaitLoop
+	ld a, [wChannelSoundIDs + CHAN7]
+	and a
+	jr nz, .musicWaitLoop
+	pop de
+	jr .finishNormally
 
 TextCommandSounds::
 	db TX_SOUND_GET_ITEM_1,           SFX_GET_ITEM_1 ; actually plays SFX_LEVEL_UP when the battle music engine is loaded

@@ -79,6 +79,7 @@ CeladonMansion1FGrannyGaveTeaText:
 	
 CeladonMansion1FGrannyReceivedTeaText:
 	text_far _CeladonMansion1FGrannyReceivedTeaText
+	sound_get_key_item
 	text_end
 
 CeladonMansion1FGrannyNoRoomText:

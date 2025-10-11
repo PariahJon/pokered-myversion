@@ -57,10 +57,10 @@ _CeladonMartRoofLittleGirlTM48ExplanationText::
 	para "@"
 	text_ram wStringBuffer
 	text " contains"
-	line "Rock Slide!"
+	line "Rock Slide!@"
 
-	para "It can spook the"
-	line "target sometimes!@"
+;	para "It can spook the"
+;	line "target sometimes!@"
 	text_end
 
 _CeladonMartRoofLittleGirlYayLemonadeText::

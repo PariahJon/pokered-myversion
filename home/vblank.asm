@@ -31,10 +31,10 @@ VBlank::
 	jr nz, .skipOAM
 
 	call hDMARoutine
-	ld a, BANK(PrepareOAMData)
-	ldh [hLoadedROMBank], a
-	ld [rROMB], a
-	call PrepareOAMData
+;	ld a, BANK(PrepareOAMData)
+;	ldh [hLoadedROMBank], a
+;	ld [rROMB], a
+;	call PrepareOAMData
 
 	; VBlank-sensitive operations end.
 .skipOAM
@@ -101,6 +101,30 @@ DEF NOT_VBLANKED EQU 1
 
 	ld a, NOT_VBLANKED
 	ldh [hVBlankOccurred], a
+	
+;First preserve the registers.
+	push bc
+	push de
+	push hl
+;I've labeled a free byte and utilized one of its bits as a flag for skipping OAM stuff.
+	ld hl, hFlags
+;See if OAM skip has been enabled.
+	bit 0, [hl]
+	jr nz, .skipOAM
+;If disabled, then enable it for now.
+;This is so DMA transfer is skipped in case vblank triggers while PrepareOAMData is running.
+	set 0, [hl]
+;Now prepare the OAM data. 
+	farcall PrepareOAMData
+;Re-disable the OAM skip flag.
+	ld hl, hFlags
+	res 0, [hl]
+;Finally, pop the registers.
+.skipOAM
+	pop hl
+	pop de
+	pop bc
+	
 .halt
 	halt
 	ldh a, [hVBlankOccurred]
