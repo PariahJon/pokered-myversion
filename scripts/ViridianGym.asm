@@ -1,7 +1,7 @@
 ViridianGym_Script:
 	ld hl, .CityName
 	CheckEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
-	jr nz, .beatGiovanni
+	jp nz, .beatGiovanni
 	ld de, .LeaderName
 	jp .done
 .beatGiovanni
