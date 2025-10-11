@@ -63,7 +63,16 @@ SlidePlayerAndEnemySilhouettesOnScreen:
 	ld a, c
 	ldh [hSCX], a
 	call DelayFrame
-	ld a, %11100100 ; inverted palette for silhouette effect
+	call DelayFrame
+;	ld a, %11100100 ; inverted palette for silhouette effect
+
+	ld a, [wOnSGB]
+	and a
+	ldpal a, SHADE_BLACK, SHADE_BLACK, SHADE_BLACK, SHADE_WHITE
+	jr z, .silhouette
+	ldpal a, SHADE_BLACK, SHADE_DARK, SHADE_LIGHT, SHADE_WHITE
+.silhouette
+
 	ldh [rBGP], a
 	ldh [rOBP0], a
 	ldh [rOBP1], a
@@ -88,11 +97,22 @@ SlidePlayerAndEnemySilhouettesOnScreen:
 	ldh [hStartTileID], a
 	hlcoord 1, 5
 	predef CopyUncompressedPicToTilemap
+	
+	xor a
+	ld [hSCX], a
+	call Delay3
+	
 	xor a
 	ldh [hWY], a
 	ldh [rWY], a
 	inc a
 	ldh [hAutoBGTransferEnabled], a
+
+	ldpal a, SHADE_BLACK, SHADE_DARK, SHADE_LIGHT, SHADE_WHITE
+	ld [rBGP], a
+	ld [rOBP0], a
+	ld [rOBP1], a
+
 	call Delay3
 	ld b, SET_PAL_BATTLE
 	call RunPaletteCommand

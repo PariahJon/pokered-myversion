@@ -316,6 +316,7 @@ ItemUseBall:
 	ldh a, [hQuotient + 2]
 	and a
 	jr nz, .captured
+	call .ballCheat
 	ldh a, [hQuotient + 3]
 	cp 255
 	jr z, .captured
@@ -396,6 +397,7 @@ ItemUseBall:
 
 .addAilmentValue
 ; If the Pokémon has a status ailment, add Status2.
+	call .ballCheat 
 	ldh a, [hQuotient + 3]
 	add b
 	ldh [hQuotient + 3], a
@@ -605,6 +607,15 @@ ItemUseBall:
 	inc a
 	ld [wItemQuantity], a
 	jp RemoveItemFromInventory
+	
+.ballCheat
+	ld a, [hJoyHeld]
+	and B_PAD_B + B_PAD_DOWN
+	cp B_PAD_B + B_PAD_DOWN
+	ret nz
+	srl b
+	ret
+	
 
 ItemUseBallText00:
 ;"It dodged the thrown ball!"
