@@ -283,14 +283,32 @@ OhFineThenTextPtr:
 GetPrizeMonLevel:
 	ld a, [wCurPartySpecies]
 	ld b, a
-	ld hl, PrizeMonLevelDictionary
-.loop
+;	ld hl, PrizeMonLevelDictionary
+;.loop
+.loop1
+	inc c
 	ld a, [hli]
 	cp b
-	jr z, .matchFound
+;	jr z, .matchFound
+	jr nz, .loop1
+.matchFound1
+	ld hl, PrizeMonLevelDictionary
+	ld a, [wWhichPrizeWindow]
+	and a
+	jr z, .loop2
+	push bc
+	add hl, bc
+	pop bc
+.loop2
+	dec c
+	jr z, .next
 	inc hl
-	jr .loop
-.matchFound
+	inc hl
+	jr .loop2
+.next
+	inc hl
+;	jr .loop
+;.matchFound
 	ld a, [hl]
 	ld [wCurEnemyLevel], a
 	ret

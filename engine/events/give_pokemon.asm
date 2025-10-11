@@ -16,6 +16,27 @@ _GivePokemon::
 	ld a, [wCurPartySpecies]
 	ld [wEnemyMonSpecies2], a
 	callfar LoadEnemyMonData
+
+	ld hl, wEnemyMonDVs+1
+	ld a, [hld]
+	or $88	
+	ld b, a
+	ld a, [hl]
+	or $98
+	ld [hli], a
+	ld [hl], b
+	ld de, wEnemyMonMaxHP
+	ld hl, wEnemyMonHP
+	ld b, 0
+	push hl
+	call CalcStats
+	
+	pop hl
+	ld a, [wEnemyMonMaxHP]
+	ld [hli], a
+	ld a, [wEnemyMonMaxHP+1]
+	ld [hli], a
+
 	call SetPokedexOwnedFlag
 	callfar SendNewMonToBox
 	ld hl, wStringBuffer

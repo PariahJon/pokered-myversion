@@ -338,7 +338,7 @@ ArcanineDexEntry:
 	text_end
 
 MewDexEntry:
-	db "New Specie@"
+	db "NewSpecies@"
 	db 1,4
 	dw 90
 	text_far _MewDexEntry

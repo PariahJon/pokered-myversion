@@ -16,3 +16,11 @@ SuperEffectiveText:
 NotVeryEffectiveText:
 	text_far _NotVeryEffectiveText
 	text_end
+
+MultiHitText:
+	text_far _MultiHitText
+	text_end
+
+HitXTimesText:
+	text_far _HitXTimesText
+	text_end

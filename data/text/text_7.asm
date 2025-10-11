@@ -220,3 +220,19 @@ _Thanks4Text::
 	text "All done, I hope"
 	line "that helped."
 	done
+	
+_SortItemsText::
+	text "Would you like to"
+	line "sort items?"
+	done
+
+_SortComplete::
+	text "Sorting is"
+	line "complete."
+	done
+	
+_NothingToSort::
+	text "There is nothing"
+	line "to sort."
+	done
+

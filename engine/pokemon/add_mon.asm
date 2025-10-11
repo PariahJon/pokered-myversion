@@ -111,9 +111,12 @@ _AddPartyMon::
 	jr nz, .copyEnemyMonData
 
 ; Not wild.
-	call Random ; generate random IVs
+	push af
+	ld a, b
+	or $88
 	ld b, a
-	call Random
+	pop af
+	or $98
 
 .next4
 	push bc
