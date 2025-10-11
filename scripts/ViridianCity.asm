@@ -30,6 +30,8 @@ ViridianCityCheckGymOpenScript:
 	ld a, [wXCoord]
 	cp 32
 	ret nz
+	ld a, PLAYER_DIR_UP
+	ld [wPlayerMovingDirection], a
 	ld a, TEXT_VIRIDIANCITY_GYM_LOCKED
 	ldh [hTextID], a
 	call DisplayTextID

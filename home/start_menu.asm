@@ -77,9 +77,11 @@ RedisplayStartMenu::
 
 ; EXIT falls through to here
 CloseStartMenu::
+	callfar SoftLockTeleport
 	call Joypad
 	ldh a, [hJoyPressed]
 	bit B_PAD_A, a
 	jr nz, CloseStartMenu
 	call LoadTextBoxTilePatterns
 	jp CloseTextDisplay
+

@@ -2855,6 +2855,8 @@ IsNextTileShoreOrWater:
 	jr z, .skipShoreTiles
 	cp DOJO
 	jr z, .skipShoreTiles ; if it's the Vermilion Dock tileset
+	cp SHIP
+	jr z, .skipShoreTiles
 	ld hl, ShoreTiles
 ;	cp $48 ; eastern shore tile in Safari Zone
 ;	jr z, .shoreOrWater
@@ -3006,3 +3008,46 @@ BallMultipliers:
 	db SAFARI_BALL , 3, 2   ; x1.5
 	db ULTRA_BALL  , 2, 1	; x2
 	db -1 ; end
+	
+SoftLockTeleport::
+	ld a, [wCurMap]
+	cp TRADE_CENTER
+	ret z
+	cp COLOSSEUM
+	ret z
+	ld a, [hJoyInput]
+	bit B_PAD_SELECT, a
+	ret z
+	CheckEvent EVENT_GOT_POKEDEX
+	ld a, [wCurrentMenuItem]
+	jr nz, .next
+	;do this stuff if pokedex has not been obtained
+	cp 5
+	ret nz
+	call ItemUseNotTime
+	ret
+.next
+	cp 6 
+	ret nz
+	ld a, PALLET_TOWN
+	ld [wLastBlackoutMap], a
+	ld a, [wStatusFlags6]
+	set 3, a 
+	res 4, a 
+	set 6, a 
+	ld [wStatusFlags6], a
+	;reset safari zone
+	ResetEvent EVENT_IN_SAFARI_ZONE
+	xor a
+	ld [wNumSafariBalls], a
+	ld [wSafariZoneGateCurScript], a
+	;make sure player has at least 1000 money
+	ld a, [wPlayerMoney]
+	and a
+	ret nz
+	ld a, [wPlayerMoney + 1]
+	cp $10
+	ret nc
+	ld a, $10
+	ld [wPlayerMoney + 1], a
+	ret

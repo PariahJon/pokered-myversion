@@ -496,6 +496,7 @@ SaveScreenInfoText:
 	next "Time@"
 
 DisplayOptionMenu:
+	call GBPalNormal
 	hlcoord 0, 0
 	ld b, 3
 	ld c, 18
