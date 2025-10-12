@@ -70,7 +70,7 @@ UpdatePlayerSprite:
 	inc a
 	ld [hl], a
 	cp 4
-	jr nz, .calcImageIndex
+	jr c, .calcImageIndex
 	xor a
 	ld [hl], a
 	inc hl
@@ -118,10 +118,11 @@ UpdateNPCSprite:
 	add a
 	ld hl, wMapSpriteData
 	add l
-	ld l, a
+
 	jr nc, .nc
 	inc h
 .nc
+	ld l, a
 	ld a, [hl]        ; read movement byte 2
 	ld [wCurSpriteMovement2], a
 	ld h, HIGH(wSpriteStateData1)
@@ -516,21 +517,28 @@ CheckSpriteAvailability:
 ; make the sprite invisible if a text box is in front of it
 ; $5F is the maximum number for map tiles
 	call GetTileSpriteStandsOn
-	ld d, MAP_TILESET_SIZE
-	ld a, [hli]
-	cp d
-	jr nc, .spriteInvisible ; standing on tile with ID >=MAP_TILESET_SIZE (bottom left tile)
-	ld a, [hld]
-	cp d
-	jr nc, .spriteInvisible ; standing on tile with ID >=MAP_TILESET_SIZE (bottom right tile)
-	ld bc, -SCREEN_WIDTH
-	add hl, bc              ; go back one row of tiles
-	ld a, [hli]
-	cp d
-	jr nc, .spriteInvisible ; standing on tile with ID >=MAP_TILESET_SIZE (top left tile)
-	ld a, [hl]
-	cp d
-	jr c, .spriteVisible    ; standing on tile with ID >=MAP_TILESET_SIZE (top right tile)
+;	ld d, MAP_TILESET_SIZE
+;	ld a, [hli]
+;	cp d
+;	jr nc, .spriteInvisible ; standing on tile with ID >=MAP_TILESET_SIZE (bottom left tile)
+;	ld a, [hld]
+;	cp d
+;	jr nc, .spriteInvisible ; standing on tile with ID >=MAP_TILESET_SIZE (bottom right tile)
+;	ld bc, -SCREEN_WIDTH
+;	add hl, bc              ; go back one row of tiles
+;	ld a, [hli]
+;	cp d
+;	jr nc, .spriteInvisible ; standing on tile with ID >=MAP_TILESET_SIZE (top left tile)
+;	ld a, [hl]
+;	cp d
+;	jr c, .spriteVisible    ; standing on tile with ID >=MAP_TILESET_SIZE (top right tile)
+
+	call .visibilityTest
+	jr nc, .spriteInvisible
+	call GetTileSpriteStandsOnRoundUp
+	call .visibilityTest
+	jr c, .spriteVisible
+
 .spriteInvisible
 	ld h, HIGH(wSpriteStateData1)
 	ldh a, [hCurrentSpriteOffset]
@@ -563,6 +571,23 @@ CheckSpriteAvailability:
 	ld [hl], a       ; x#SPRITESTATEDATA2_GRASSPRIORITY
 	and a
 .done
+	ret
+	
+.visibilityTest
+	ld d, $60
+	ld a, [hli]
+	cp d
+	ret nc
+	ld a, [hld]
+	cp d
+	ret nc
+	ld bc, -20
+	add hl, bc
+	ld a, [hli]
+	cp d
+	ret nc
+	ld a, [hl]
+	cp d
 	ret
 
 UpdateSpriteImage:
@@ -709,6 +734,16 @@ CanWalkOntoTile:
 ; calculates the tile pointer pointing to the tile the current sprite stands on
 ; this is always the lower left tile of the 2x2 tile blocks all sprites are snapped to
 ; hl: output pointer
+
+GetTileSpriteStandsOnRoundUp:
+	ld h, HIGH(wSpriteStateData1)
+	ld a, [hCurrentSpriteOffset]
+	add $4
+	ld l, a
+	ld a, [hli]
+	add $4
+	jr GetTileSpriteStandsOn.roundUp
+
 GetTileSpriteStandsOn:
 	ld h, HIGH(wSpriteStateData1)
 	ldh a, [hCurrentSpriteOffset]
@@ -717,6 +752,20 @@ GetTileSpriteStandsOn:
 	ld a, [hli]     ; x#SPRITESTATEDATA1_YPIXELS
 	add $4          ; align to 2*2 tile blocks (Y position is always off 4 pixels to the top)
 	and $f0         ; in case object is currently moving
+
+	jr .doneRounding
+.roundUp
+	ld c, a
+	and $F0
+	ld b, a
+	ld a, c
+	and $0F
+	jr z, .next
+	ld a, $10
+.next
+	add b
+.doneRounding
+
 	srl a           ; screen Y tile * 4
 	ld c, a
 	ld b, $0
