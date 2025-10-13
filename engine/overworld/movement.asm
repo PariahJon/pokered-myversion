@@ -549,14 +549,14 @@ CheckSpriteAvailability:
 	jr .done
 .spriteVisible
 	ld c, a
-;	ld a, [wWalkCounter]
-;	and a
-;	jr nz, .done           ; if player is currently walking, we're done
-	call UpdateSpriteImage
-
 	ld a, [wWalkCounter]
 	and a
 	jr nz, .done           ; if player is currently walking, we're done
+	call UpdateSpriteImage
+
+;	ld a, [wWalkCounter]
+;	and a
+;	jr nz, .done           ; if player is currently walking, we're done
 
 	inc h
 	ldh a, [hCurrentSpriteOffset]
