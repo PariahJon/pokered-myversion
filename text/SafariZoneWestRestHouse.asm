@@ -9,7 +9,7 @@ _SafariZoneWestRestHouseScientistText::
 _SafariZoneWestRestHouseCooltrainerMText::
 	text "Using Bait will"
 	line "make #mon"
-	cont "easier to catch."
+	cont "harder to catch."
 	done
 
 _SafariZoneWestRestHouseSilphWorkerFText::

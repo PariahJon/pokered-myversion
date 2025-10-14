@@ -1,6 +1,6 @@
 _Route24CooltrainerM2EndBattleText::
-	text "I"
-	line "thought not!"
+	text "... Of course,"
+	line "I'm not as good!"
 	prompt
 
 _Route24CooltrainerM2AfterBattleText::
