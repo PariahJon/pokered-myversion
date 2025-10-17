@@ -386,6 +386,10 @@ PokedexMenuItemsText:
 ; INPUT:
 ; [wPokedexNum] = pokedex number
 ; hl = address of bit field
+
+IsPokemonOwnedBitSet::
+	ld hl, wPokedexOwned
+
 IsPokemonBitSet:
 	ld a, [wPokedexNum]
 	dec a
@@ -669,3 +673,19 @@ IndexToPokedex:
 	ret
 
 INCLUDE "data/pokemon/dex_order.asm"
+
+IsEnemyMonOwned::
+	push de
+	ld a, [wEnemyMonSpecies]
+	ld [wPokedexNum], a
+	predef IndexToPokedex
+	farcall IsPokemonOwnedBitSet
+	pop de
+	ret
+
+CryIfOwned::
+	call IsEnemyMonOwned
+	ret z
+	ld a, [wEnemyMonSpecies]
+	call PlayCry
+	ret

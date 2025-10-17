@@ -2199,11 +2199,23 @@ DisplayBattleMenu::
 	inc hl
 	ld a, $1
 	ld [hli], a ; wMaxMenuItem
-	ld [hl], PAD_RIGHT | PAD_A ; wMenuWatchedKeys
+	ld [hl], PAD_RIGHT | PAD_A | PAD_B | PAD_SELECT ; wMenuWatchedKeys
 	call HandleMenuInput
 	bit B_PAD_RIGHT, a
 	jr nz, .rightColumn
-	jr .AButtonPressed ; the A button was pressed
+	bit B_PAD_A, a
+	jr nz, .AButtonPressed
+	bit B_PAD_B, a
+	jr nz, .BButtonPressed
+;	jr .AButtonPressed ; the A button was pressed
+.SelectButtonPressed
+	push bc
+	push hl
+	farcall CryIfOwned
+	pop hl
+	pop bc
+	jp .leftColumn
+
 .rightColumn ; put cursor in right column of menu
 	ld a, [wBattleType]
 	cp BATTLE_TYPE_SAFARI
@@ -2232,11 +2244,13 @@ DisplayBattleMenu::
 	inc hl
 	ld a, $1
 	ld [hli], a ; wMaxMenuItem
-	ld a, PAD_LEFT | PAD_A
+	ld a, PAD_LEFT | PAD_A | PAD_B
 	ld [hli], a ; wMenuWatchedKeys
 	call HandleMenuInput
+	bit B_PAD_B, a
+	jr nz, .BButtonPressed
 	bit B_PAD_LEFT, a
-	jr nz, .leftColumn ; if left was pressed, jump
+	jp nz, .leftColumn ; if left was pressed, jump
 	ld a, [wCurrentMenuItem]
 	add $2 ; if we're in the right column, the actual id is +2
 	ld [wCurrentMenuItem], a
@@ -2255,6 +2269,12 @@ DisplayBattleMenu::
 ; item menu was selected
 	inc a ; increment a to 2
 	jr .handleMenuSelection
+
+.BButtonPressed
+	ld a, 3
+	ld [wBattleAndStartSavedMenuItem], a
+	jp DisplayBattleMenu
+
 .notItemMenu
 	cp $2 ; was the party menu selected?
 	jr nz, .handleMenuSelection
@@ -3428,14 +3448,37 @@ MirrorMoveCheck:
 	ld hl, wPlayerBattleStatus1
 	bit ATTACKING_MULTIPLE_TIMES, [hl]
 	jr z, .executeOtherEffects
+
+;	call DecAttackPlayer
+	push af
+	push bc
+	push de
+	push hl
+	ld hl, wUnusedAlreadyOwnedFlag
+	set 0, [hl]
+	call CriticalHitTest
+	call GetDamageVarsForPlayerAttack
+	call CalculateDamage
+	call AdjustDamageForMoveType
+	call RandomizeDamage
+	pop hl
+	pop de
+	pop bc
+	pop af
+
 	ld a, [wPlayerNumAttacksLeft]
 	dec a
 	ld [wPlayerNumAttacksLeft], a
 	jp nz, GetPlayerAnimationType ; for multi-hit moves, apply attack until PlayerNumAttacksLeft hits 0 or the enemy faints.
 	                             ; damage calculation and accuracy tests only happen for the first hit
 	res ATTACKING_MULTIPLE_TIMES, [hl] ; clear attacking multiple times status when all attacks are over
-	ld hl, MultiHitText
-	call PrintText
+;	ld hl, MultiHitText
+;	call PrintText
+
+	farcall MultiAttackHitXTimesTXT_player
+	ld hl, wUnusedAlreadyOwnedFlag
+	res 0, [hl]
+
 	xor a
 	ld [wPlayerNumHits], a
 .executeOtherEffects
@@ -3450,6 +3493,7 @@ MirrorMoveCheck:
 	; Includes side effects that only need to be called if the target didn't faint.
 	; Responsible for executing Twineedle's second side effect (poison).
 	jp ExecutePlayerMoveDone
+
 
 
 

@@ -243,6 +243,7 @@ ENDC
 	call ClearSprites
 	xor a
 	ldh [hWY], a
+	ld [wMapPalOffset], a
 	inc a
 	ldh [hAutoBGTransferEnabled], a
 	call ClearScreen
