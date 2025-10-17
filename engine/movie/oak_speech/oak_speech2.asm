@@ -27,6 +27,7 @@ ChoosePlayerName:
 	ld hl, YourNameIsText
 	jp PrintText
 
+
 YourNameIsText:
 	text_far _YourNameIsText
 	text_end

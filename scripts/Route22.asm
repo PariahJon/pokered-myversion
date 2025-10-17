@@ -168,7 +168,7 @@ Route22Rival1AfterBattleScript:
 	call SetSpriteFacingDirectionAndDelay
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
-	SetEvent EVENT_BEAT_ROUTE22_RIVAL_1ST_BATTLE
+;	SetEvent EVENT_BEAT_ROUTE22_RIVAL_1ST_BATTLE
 	ld a, TEXT_ROUTE22_RIVAL1
 	ldh [hTextID], a
 	call DisplayTextID

@@ -14,7 +14,12 @@ TradeMons:
 	; "went and evolved" and also changed the trades to match. English
 	; Red/Blue uses the original JP Red/Green trades but with the JP Blue
 	; post-trade text.
+IF DEF(_RED)
 	npctrade NIDORINO,   NIDORINA,  TRADE_DIALOGSET_CASUAL,    "Terry"
+ENDC
+IF DEF(_BLUE)
+	npctrade NIDORINA, 	 NIDORINO, 	TRADE_DIALOGSET_CASUAL,	   "Terry"
+ENDC
 	npctrade ABRA,       MR_MIME,   TRADE_DIALOGSET_CASUAL,    "Marcel"
 	npctrade BUTTERFREE, BEEDRILL,  TRADE_DIALOGSET_HAPPY,     "Chikuchiku" ; unused
 	npctrade PONYTA,     SEEL,      TRADE_DIALOGSET_CASUAL,    "Sailor"
@@ -23,6 +28,11 @@ TradeMons:
 	npctrade POLIWHIRL,  JYNX,      TRADE_DIALOGSET_CASUAL,    "Lola"
 	npctrade RAICHU,     ELECTRODE, TRADE_DIALOGSET_CASUAL,    "Doris"
 	npctrade VENONAT,    TANGELA,   TRADE_DIALOGSET_HAPPY,     "Crinkles"
+IF DEF(_RED)
 	npctrade NIDORAN_M,  NIDORAN_F, TRADE_DIALOGSET_HAPPY,     "Spot"
+ENDC
+IF DEF(_BLUE)
+	npctrade NIDORAN_F,	 NIDORAN_M, TRADE_DIALOGSET_HAPPY,	   "Spot"
+ENDC
 	npctrade NO_MON,     NO_MON,    TRADE_DIALOGSET_SELF,      "Unseen"
 	assert_table_length NUM_NPC_TRADES
