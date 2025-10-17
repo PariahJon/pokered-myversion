@@ -628,7 +628,7 @@ OaksLabOakGivesPokedexScript:
 
 	ld a, SCRIPT_OAKSLAB_RIVAL_LEAVES_WITH_POKEDEX
 	ld [wOaksLabCurScript], a
-	SetEvent EVENT_BEAT_ROUTE22_RIVAL_1ST_BATTLE
+	SetEvent EVENT_GET_FIVE_POKEBALLS
 	ret
 
 OaksLabRivalLeavesWithPokedexScript:
@@ -991,7 +991,7 @@ OaksLabOak1Text:
 	ld b, POKE_BALL
 	call IsItemInBag
 	jr nz, .come_see_me_sometimes
-	CheckEvent EVENT_BEAT_ROUTE22_RIVAL_1ST_BATTLE
+	CheckEvent EVENT_GET_FIVE_POKEBALLS
 	jr nz, .give_poke_balls
 	CheckEvent EVENT_GOT_POKEDEX
 	jr nz, .mon_around_the_world
@@ -1032,7 +1032,6 @@ OaksLabOak1Text:
 	call GiveItem
 	ld hl, .GivePokeballsText
 	call PrintText
-	ResetEvent EVENT_BEAT_ROUTE22_RIVAL_1ST_BATTLE
 	jr .done
 .come_see_me_sometimes
 	ld hl, .ComeSeeMeSometimesText

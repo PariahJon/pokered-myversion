@@ -776,8 +776,8 @@ DEF INDIGO_PLATEAU_EVENTS_END EQU const_value - 1
 	const EVENT_BEAT_ARTICUNO
 
 ; End of events
+	const_next $A00
 	const EVENT_BEAT_ELITE4
 	const EVENT_GOT_HOT_TEA
-
-	const_next $A00
+	const EVENT_GET_FIVE_POKEBALLS
 DEF NUM_EVENTS EQU const_value
