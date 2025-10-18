@@ -8,6 +8,13 @@ VBlank::
 	ldh a, [hLoadedROMBank]
 	ld [wVBlankSavedROMBank], a
 
+	ld a, [wVBlankSavedROMBank]
+	and a
+	jr z, .no_delay_bank
+	ld [hLoadedROMBank], a
+	ld [rROMB], a
+.no_delay_bank
+
 	ldh a, [hSCX]
 	ldh [rSCX], a
 	ldh a, [hSCY]
@@ -20,16 +27,23 @@ VBlank::
 	ldh [rWY], a
 .ok
 
+
+	ld a, [hFlagsTemp]
+	bit 1, a
+	jr nz, .skipBGMap
+
 	call AutoBgMapTransfer
 	call VBlankCopyBgMap
 	call RedrawRowOrColumn
 	call VBlankCopy
 	call VBlankCopyDouble
 	call UpdateMovingBgTiles
-	ld a, [hSkipOAMUpdates]
+
+.skipBGMap
+
+	ld a, [hFlagsTemp]
 	bit 0, a
 	jr nz, .skipOAM
-
 	call hDMARoutine
 ;	ld a, BANK(PrepareOAMData)
 ;	ldh [hLoadedROMBank], a
@@ -127,7 +141,9 @@ DEF NOT_VBLANKED EQU 1
 	
 .halt
 	halt
+	nop
 	ldh a, [hVBlankOccurred]
 	and a
 	jr nz, .halt
 	ret
+

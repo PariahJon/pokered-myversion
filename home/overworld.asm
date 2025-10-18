@@ -504,15 +504,24 @@ WarpFound2::
 	ld [wLastMap], a
 	ld a, [wCurMapWidth]
 	ld [wUnusedLastMapWidth], a
-	ldh a, [hWarpDestinationMap]
+;	ldh a, [hWarpDestinationMap]
+;	ld [wCurMap], a
+;	cp ROCK_TUNNEL_1F
+;	jr nz, .notRockTunnel
+;	ld a, $06
+;	ld [wMapPalOffset], a
+;	call GBFadeOutToBlack
+;.notRockTunnel
+;	call PlayMapChangeSound
+;	jr .done
+
+	call PlayMapChangeSound
+	ld a, [hWarpDestinationMap]
 	ld [wCurMap], a
 	cp ROCK_TUNNEL_1F
-	jr nz, .notRockTunnel
+	jr nz, .done
 	ld a, $06
 	ld [wMapPalOffset], a
-	call GBFadeOutToBlack
-.notRockTunnel
-	call PlayMapChangeSound
 	jr .done
 
 ; for maps that can have the 0xFF destination map, which means to return to the outside map
@@ -719,9 +728,18 @@ PlayMapChangeSound::
 	call PlaySound
 	ld a, [wMapPalOffset]
 	and a
-	ret nz
-	jp GBFadeOutToBlack
+'	ret nz
+'	jp GBFadeOutToBlack
 
+	jp z, GBFadeOutToBlack
+	push af
+	inc a
+	ld [wMapPalOffset], a
+	call LoadGBPal
+	pop af
+	ld [wMapPalOffset], a
+	ret
+	
 CheckIfInOutsideMap::
 ; If the player is in an outside map (a town or route), set the z flag
 	ld a, [wCurMapTileset]
@@ -772,11 +790,20 @@ MapEntryAfterBattle::
 	ld a, [wMapPalOffset]
 	and a
 	jp z, GBFadeInFromWhite
-	jp LoadGBPal
+;	jp LoadGBPal
+
+	call DisableLCD
+	call LoadGBPal
+	jp EnableLCD
+
 
 HandleBlackOut::
 ; For when all the player's pokemon faint.
 ; Does not print the "blacked out" message.
+
+	ld b, SET_PAL_OVERWORLD
+	call RunPaletteCommand
+
 	call GBFadeOutToBlack
 	ld a, $08
 	call StopMusic
@@ -896,7 +923,7 @@ LoadTilesetTilePatternData::
 	ld a, [wTilesetGfxPtr + 1]
 	ld h, a
 	ld de, vTileset
-	ld bc, $790
+	ld bc, $600
 	ld a, [wTilesetBank]
 	jp FarCopyData2
 
@@ -1435,24 +1462,57 @@ LoadCurrentMapView::
 	ld bc, BLOCK_WIDTH / 2
 	add hl, bc
 .copyToVisibleAreaBuffer
-	decoord 0, 0 ; base address for the tiles that are directly transferred to VRAM during V-blank
+;	decoord 0, 0 ; base address for the tiles that are directly transferred to VRAM during V-blank
+
+	ld d, h
+	ld e, l
+	di
+	ld hl, sp + 0
+	ld a, h
+	ld [hSPTemp], a
+	ld a, l
+	ld [hSPTemp + 1], a
+	ld h, d
+	ld l, e
+	ld sp, hl
+	coord hl, 0 , 0
+
 	ld b, SCREEN_HEIGHT
 .rowLoop2
-	ld c, SCREEN_WIDTH
+	ld c, SCREEN_WIDTH / 2
 .rowInnerLoop2
-	ld a, [hli]
-	ld [de], a
-	inc de
+;	ld a, [hli]
+;	ld [de], a
+;	inc de
+
+	pop de
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+
 	dec c
 	jr nz, .rowInnerLoop2
-	ld a, SURROUNDING_WIDTH - SCREEN_WIDTH
-	add l
-	ld l, a
-	jr nc, .noCarry3
-	inc h
-.noCarry3
+
+	pop de
+	pop de
+
+;	ld a, SURROUNDING_WIDTH - SCREEN_WIDTH
+;	add l
+;	ld l, a
+;	jr nc, .noCarry3
+;	inc h
+;.noCarry3
 	dec b
 	jr nz, .rowLoop2
+
+	ld a, [hSPTemp]
+	ld h, a
+	ld a, [hSPTemp + 1]
+	ld l, a
+	ld sp, hl
+	ei
+
 	pop af
 	ldh [hLoadedROMBank], a
 	ld [rROMB], a ; restore previous ROM bank
@@ -1800,7 +1860,17 @@ ScheduleWestColumnRedraw::
 ; function to write the tiles that make up a tile block to memory
 ; Input: c = tile block ID, hl = destination address
 DrawTileBlock::
-	push hl
+	ld d, h
+	ld e, l
+
+;back up the stack pointer
+	di
+	ld hl, sp + 0
+	ld a, h
+	ld [hSPTemp], a
+	ld a, l
+	ld [hSPTemp + 1], a ; save stack pinter
+	
 	ld a, [wTilesetBlocksPtr] ; pointer to tiles
 	ld l, a
 	ld a, [wTilesetBlocksPtr + 1]
@@ -1814,25 +1884,38 @@ DrawTileBlock::
 	and $0f
 	ld b, a ; bc = tile block ID * 0x10
 	add hl, bc
-	ld d, h
-	ld e, l ; de = address of the tile block's tiles
-	pop hl
-	ld c, BLOCK_HEIGHT ; 4 loop iterations
+	ld sp, hl
+	; sp = address of the tile block's tiles
+	
+	ld h, d
+	ld l, e		;hl = destination address
+
+	ld c, $04 ; 4 loop iterations
 .loop ; each loop iteration, write 4 tile numbers
-	push bc
-REPT BLOCK_WIDTH - 1
-	ld a, [de]
+	pop de
+	ld a, e
 	ld [hli], a
-	inc de
-ENDR
-	ld a, [de]
+	ld a, d
+	ld [hli], a
+	pop de
+	ld a, e
+	ld [hli], a
+	ld a, d
 	ld [hl], a
-	inc de
-	ld bc, SURROUNDING_WIDTH - (BLOCK_WIDTH - 1)
-	add hl, bc
-	pop bc
+
+	ld de, $0015
+	add hl, de
 	dec c
 	jr nz, .loop
+	
+;restore the stack pointer
+	ld a, [hSPTemp]
+	ld h, a
+	ld a, [hSPTemp + 1]
+	ld l, a
+	ld sp, hl
+	ei
+	
 	ret
 
 ; function to update joypad state and simulate button presses
@@ -2316,7 +2399,7 @@ CopyMapConnectionHeader::
 LoadMapData::
 	ldh a, [hLoadedROMBank]
 	push af
-	call DisableLCD
+;	call DisableLCD
 	ld a, $98
 	ld [wMapViewVRAMPointer + 1], a
 	xor a
@@ -2324,11 +2407,15 @@ LoadMapData::
 	ldh [hSCY], a
 	ldh [hSCX], a
 	ld [wWalkCounter], a
-	ld [wUnusedCurMapTilesetCopy], a
+;	ld [wUnusedCurMapTilesetCopy], a
 	ld [wWalkBikeSurfStateCopy], a
 	ld [wSpriteSetID], a
 	call LoadTextBoxTilePatterns
 	call LoadMapHeader
+
+	ld hl, hFlagsTemp
+	set 3, [hl]
+
 	farcall InitMapSprites ; load tile pattern data for sprites
 	call LoadTileBlockMap
 	call LoadTilesetTilePatternData
@@ -2337,15 +2424,19 @@ LoadMapData::
 	hlcoord 0, 0
 	ld de, vBGMap0
 	ld b, SCREEN_HEIGHT
+
+	ld b, 18
+	ld c, 20
+
 .vramCopyLoop
-	ld c, SCREEN_WIDTH
-.vramCopyInnerLoop
-	ld a, [hli]
-	ld [de], a
-	inc e
-	dec c
-	jr nz, .vramCopyInnerLoop
-	ld a, TILEMAP_WIDTH - SCREEN_WIDTH
+;	ld c, SCREEN_WIDTH
+
+	push bc
+	ld b, 0
+	call CopyData
+	pop bc
+	
+	ld a, 32 - 20
 	add e
 	ld e, a
 	jr nc, .noCarry
@@ -2355,7 +2446,27 @@ LoadMapData::
 	jr nz, .vramCopyLoop
 	ld a, $01
 	ld [wUpdateSpritesEnabled], a
-	call EnableLCD
+
+	ld hl, hFlagsTemp
+	res 3, [hl]
+
+;.vramCopyInnerLoop
+;	ld a, [hli]
+;	ld [de], a
+;	inc e
+;	dec c
+;	jr nz, .vramCopyInnerLoop
+;	ld a, TILEMAP_WIDTH - SCREEN_WIDTH
+;	add e
+;	ld e, a
+;	jr nc, .noCarry
+;	inc d
+;.noCarry
+;	dec b
+;	jr nz, .vramCopyLoop
+;	ld a, $01
+;	ld [wUpdateSpritesEnabled], a
+;	call EnableLCD
 	ld b, SET_PAL_OVERWORLD
 	call RunPaletteCommand
 	call LoadPlayerSpriteGraphics
@@ -2365,7 +2476,7 @@ LoadMapData::
 	ld a, [wStatusFlags7]
 	bit BIT_NO_MAP_MUSIC, a
 	jr nz, .restoreRomBank
-	call UpdateMusic6Times
+;	call UpdateMusic6Times
 	call PlayDefaultMusicFadeOutCurrent
 .restoreRomBank
 	pop af

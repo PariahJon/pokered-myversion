@@ -46,4 +46,26 @@ LoadMonData_::
 .copyMonData
 	ld de, wLoadedMon
 	ld bc, wPartyMon2 - wPartyMon1
+
+;joenote - allow active battle pokemon's realtime stats to be used in place of its unmodified stats
+	call CopyData
+
+	ld a, [wMonDataLocation]
+	and a
+	ret nz	;done if lot looking at player party data
+
+	ld a, [wIsInBattle]
+	and a
+	ret z	;done if not in a battle
+
+	ld a, [wWhichPokemon]
+	ld b, a
+	ld a, [wPlayerMonNumber]
+	cp b
+	ret nz	;done if loading data for a different 'mon than the active pokemon
+
+	ld hl, wBattleMonAttack
+	ld de, wLoadedMonAttack
+	ld bc, wBattleMonSpecial - wBattleMonMaxHP
+
 	jp CopyData
