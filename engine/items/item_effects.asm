@@ -1766,7 +1766,7 @@ ItemUsePokeFlute:
 	ld a, [hl]
 
 	push af
-	and SLP
+	and SLP_MASK
 	jr z, .notAsleep
 	ld a, l
 	ld [wWereAnyMonsAsleep], a

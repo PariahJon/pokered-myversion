@@ -728,8 +728,8 @@ PlayMapChangeSound::
 	call PlaySound
 	ld a, [wMapPalOffset]
 	and a
-'	ret nz
-'	jp GBFadeOutToBlack
+;	ret nz
+;	jp GBFadeOutToBlack
 
 	jp z, GBFadeOutToBlack
 	push af
