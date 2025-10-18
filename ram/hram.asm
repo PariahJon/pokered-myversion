@@ -398,6 +398,8 @@ hJoyInput:: db
 hDisableJoypadPolling:: db
 hFlags:: db
 
-	ds 4
+hFlagsTemp:: db
+
+	ds 3
 
 ENDSECTION

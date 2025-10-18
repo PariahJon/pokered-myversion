@@ -1764,6 +1764,15 @@ ItemUsePokeFlute:
 	ld [hl], a
 	ld hl, wEnemyMonStatus
 	ld a, [hl]
+
+	push af
+	and SLP
+	jr z, .notAsleep
+	ld a, l
+	ld [wWereAnyMonsAsleep], a
+.notAsleep
+	pop af
+
 	and b ; remove Sleep status
 	ld [hl], a
 	call LoadScreenTilesFromBuffer2 ; restore saved screen

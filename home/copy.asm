@@ -13,6 +13,28 @@ FarCopyData::
 	ret
 
 CopyData::
+
+	ld a, [hFlagsTemp]
+	bit 3, a
+	jr z, _CopyData
+.loop
+	di
+.waitVRAM
+	ld a, [rSTAT]
+	and %10
+	jr nz, .waitVRAM
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec bc
+	ei
+	ld a, c
+	or b
+	jr nz, .loop
+	ret
+
+_CopyData::
+
 ; Copy bc bytes from hl to de.
 	ld a, [hli]
 	ld [de], a
@@ -20,5 +42,5 @@ CopyData::
 	dec bc
 	ld a, c
 	or b
-	jr nz, CopyData
+	jr nz, _CopyData
 	ret
