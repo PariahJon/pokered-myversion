@@ -32,8 +32,11 @@ TryDoWildEncounter:
 	hlcoord 8, 9
 
 	ld c, [hl]
-	ld a, [wGrassTile]
-	cp c
+;	ld a, [wGrassTile]
+;	cp c
+
+	call TestGrassTile
+
 	ld a, [wGrassRate]
 	jr z, .CanEncounter
 	ld a, $14 ; in all tilesets with a water tile, this is its id
@@ -104,6 +107,18 @@ TryDoWildEncounter:
 	ret
 .willEncounter
 	xor a
+	ret
+
+TestGrassTile:
+	ld a, [wGrassTile]
+	cp c
+	jr z, .return
+	ld a, [wCurMapTileset]
+	cp FOREST
+	jr nz, .return
+	ld a, $34	; check for the extra grass tile in the forest tileset
+	cp c
+.return
 	ret
 
 INCLUDE "data/wild/probabilities.asm"
