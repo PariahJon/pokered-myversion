@@ -63,11 +63,15 @@ BikeShopClerkText:
 	call PlaceString
 	ld hl, BikeShopClerkDoYouLikeItText
 	call PrintText
+
+	ld hl, wStatusFlags5
+	res BIT_NO_TEXT_DELAY, [hl]
+
 	call HandleMenuInput
 	bit B_PAD_B, a
 	jr nz, .cancel
-	ld hl, wStatusFlags5
-	res BIT_NO_TEXT_DELAY, [hl]
+;	ld hl, wStatusFlags5
+;	res BIT_NO_TEXT_DELAY, [hl]
 	ld a, [wCurrentMenuItem]
 	and a
 	jr nz, .cancel
