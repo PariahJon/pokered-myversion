@@ -359,6 +359,9 @@ UpdateSpriteInWalkingAnimation:
 	ld [hl], a                       ; x#SPRITESTATEDATA2_MOVEMENTDELAY:
 	                                 ; set next movement delay to a random value in [0,$7f]
 	                                 ; note that value 0 actually makes the delay $100 (bug?)
+
+	inc [hl]
+
 	dec h ; HIGH(wSpriteStateData1)
 	ldh a, [hCurrentSpriteOffset]
 	inc a
