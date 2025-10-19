@@ -346,6 +346,9 @@ CooltrainerFAI:
 	; Uncomment the line below to fix this.
 	cp 25 percent + 1
 	; ret nc
+
+	ret nc
+
 	ld a, 10
 	call AICheckIfHPBelowFraction
 	jp c, AIUseHyperPotion
