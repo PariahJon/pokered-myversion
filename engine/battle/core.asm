@@ -2388,7 +2388,14 @@ PartyMenuOrRockOrRun:
 	ld [wCurSpecies], a
 	call GetMonHeader
 	ld de, vFrontPic
-	call LoadMonFrontSprite
+;	call LoadMonFrontSprite
+
+	call IsGhostBattle
+	push af
+	call nz, LoadMonFrontSprite
+	pop af
+	call z, LoadGhostPic
+
 	jr .enemyMonPicReloaded
 .doEnemyMonAnimation
 	ld b, BANK(AnimationSubstitute) ; BANK(AnimationMinimizeMon)
@@ -6911,17 +6918,7 @@ InitBattleCommon:
 	ld [wIsInBattle], a
 	jp _InitBattleCommon
 
-InitWildBattle:
-	ld a, $1
-	ld [wIsInBattle], a
-	call LoadEnemyMonData
-	call DoBattleTransitionAndInitBattleVariables
-	ld a, [wCurOpponent]
-	cp RESTLESS_SOUL
-	jr z, .isGhost
-	call IsGhostBattle
-	jr nz, .isNoGhost
-.isGhost
+LoadGhostPic:
 	ld hl, wMonHSpriteDim
 	ld a, $66
 	ld [hli], a   ; write sprite dimensions
@@ -6949,6 +6946,49 @@ InitWildBattle:
 	call LoadMonFrontSprite ; load ghost sprite
 	pop af
 	ld [wCurPartySpecies], a
+	ret	
+
+InitWildBattle:
+	ld a, $1
+	ld [wIsInBattle], a
+	call LoadEnemyMonData
+	call DoBattleTransitionAndInitBattleVariables
+	ld a, [wCurOpponent]
+	cp RESTLESS_SOUL
+	jr z, .isGhost
+	call IsGhostBattle
+	jr nz, .isNoGhost
+.isGhost
+
+	call LoadGhostPic
+
+;	ld hl, wMonHSpriteDim
+;	ld a, $66
+;	ld [hli], a   ; write sprite dimensions
+;	ld bc, GhostPic
+;	ld a, c
+;	ld [hli], a   ; write front sprite pointer
+;	ld [hl], b
+;	ld hl, wEnemyMonNick  ; set name to "GHOST"
+;	ld a, "G"
+;	ld [hli], a
+;	ld a, "H"
+;	ld [hli], a
+;	ld a, "O"
+;	ld [hli], a
+;	ld a, "S"
+;	ld [hli], a
+;	ld a, "T"
+;	ld [hli], a
+;	ld [hl], "@"
+;	ld a, [wCurPartySpecies]
+;	push af
+;	ld a, MON_GHOST
+;	ld [wCurPartySpecies], a
+;	ld de, vFrontPic
+;	call LoadMonFrontSprite ; load ghost sprite
+;	pop af
+;	ld [wCurPartySpecies], a
 	jr .spriteLoaded
 .isNoGhost
 	ld de, vFrontPic
