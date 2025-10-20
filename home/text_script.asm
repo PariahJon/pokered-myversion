@@ -95,6 +95,8 @@ AfterDisplayingTextID::
 	jr nz, HoldTextDisplayOpen
 	call WaitForTextScrollButtonPress
 
+	jr CloseTextDisplay
+
 ; loop to hold the dialogue box open as long as the player keeps holding down the A button
 HoldTextDisplayOpen::
 	call Joypad

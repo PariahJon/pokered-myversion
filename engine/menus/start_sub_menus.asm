@@ -654,7 +654,9 @@ StartMenu_SaveReset::
 	jp nz, Init
 	predef SaveMenu
 	call LoadScreenTilesFromBuffer2
-	jp HoldTextDisplayOpen
+;	jp HoldTextDisplayOpen
+
+	jp CloseStartMenu
 
 StartMenu_Option::
 	xor a
