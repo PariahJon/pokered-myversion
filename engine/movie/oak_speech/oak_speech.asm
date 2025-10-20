@@ -8,8 +8,14 @@ PrepareOakSpeech:
 	; which causes CheckForceBikeOrSurf to not return.
 	; To fix this in debug builds, reset BIT_ALWAYS_ON_BIKE here or in StartNewGame.
 	; In non-debug builds, the instructions can be removed.
+
+IF DEF(_DEBUG)
+
 	ld a, [wStatusFlags6]
 	push af
+
+ENDC
+
 	ld hl, wPlayerName
 	ld bc, wBoxDataEnd - wPlayerName
 	xor a
@@ -18,8 +24,14 @@ PrepareOakSpeech:
 	ld bc, wSpriteDataEnd - wSpriteDataStart
 	xor a
 	call FillMemory
+
+IF DEF(_DEBUG)
+
 	pop af
 	ld [wStatusFlags6], a
+
+ENDC
+
 	pop af
 	ld [wOptions], a
 	pop af
