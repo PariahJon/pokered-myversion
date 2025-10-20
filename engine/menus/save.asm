@@ -163,7 +163,7 @@ SaveMenu:
 	and a
 	ret nz
 .save
-	call SaveGameData
+;	call SaveGameData
 	hlcoord 1, 13
 	lb bc, 4, 18
 	call ClearScreenArea
@@ -172,6 +172,9 @@ SaveMenu:
 	call PlaceString
 	ld c, 120
 	call DelayFrames
+
+	call SaveGameData
+
 	ld hl, GameSavedText
 	call PrintText
 	ld a, SFX_SAVE
@@ -225,6 +228,12 @@ SaveMainData:
 	ld de, sSpriteData
 	ld bc, wSpriteDataEnd - wSpriteDataStart
 	call CopyData
+
+	ld hl, wPartyDataStart
+	ld de, sPartyData
+	ld bc, wPartyDataEnd - wPartyDataStart
+	call CopyData
+
 	ld hl, wBoxDataStart
 
 ; this part is redundant, SaveCurrentBoxData is always called next
@@ -290,9 +299,11 @@ SavePartyAndDexData:
 SaveGameData::
 	ld a, $2
 	ld [wSaveFileStatus], a
-	call SaveMainData
-	call SaveCurrentBoxData
-	jp SavePartyAndDexData
+;	call SaveMainData
+;	call SaveCurrentBoxData
+;	jp SavePartyAndDexData
+
+	jp SaveMainData
 
 CalcCheckSum:
 ;Check Sum (result[1 byte] is complemented)
