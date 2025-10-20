@@ -72,7 +72,7 @@ GateUpstairsScript_PrintIfFacingUp:
 ;	ld a, TRUE
 ;	jr .done
 
-	ld hl, TVWrongSideText
+	ld hl, _RedsHouse1FTVWrongSideText
 
 .up
 	call PrintText
