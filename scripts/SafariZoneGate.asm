@@ -23,7 +23,7 @@ SafariZoneGateDefaultScript:
 	jr c, .playerInfrontOfClerk
 	ld hl, .exitCoords
 	call ArePlayerCoordsInArray
-	jr c, .SafariZoneEntranceScript5
+	jr c, SafariZoneGateLeavingSafariScript
 	ret
  .playerInfrontOfClerk
 
