@@ -25,6 +25,9 @@ IndigoPlateauLobby_TextPointers:
 IndigoPlateauLobbyNurseText:
 	script_pokecenter_nurse
 
+IndigoPlateauLobbyClerkText:
++	script_mart ULTRA_BALL, GREAT_BALL, FULL_RESTORE, MAX_POTION, FULL_HEAL, REVIVE, MAX_REPEL
+
 IndigoPlateauLobbyGymGuideText:
 	text_far _IndigoPlateauLobbyGymGuideText
 	text_end

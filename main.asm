@@ -335,6 +335,8 @@ SECTION "Vending Machine", ROMX
 
 INCLUDE "engine/events/vending_machine.asm"
 
+INCLUDE "engine/pokemon/calc_stats.asm"
+
 
 SECTION "Itemfinder 2", ROMX
 
