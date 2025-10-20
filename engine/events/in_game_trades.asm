@@ -12,13 +12,17 @@ DoInGameTradeDialogue:
 	call SaveScreenTilesToBuffer2
 	ld hl, TradeMons
 	ld a, [wWhichTrade]
-	ld b, a
-	swap a
-	sub b
-	sub b
-	ld c, a
+;	ld b, a
+;	swap a
+;	sub b
+;	sub b
+;	ld c, a
 	ld b, 0
-	add hl, bc
+;	add hl, bc
+
+	ld c, 3 + NAME_LENGTH ; new code from Chatot4444, this bypasses the 16-limit on in-game trades.
+	call AddNTimes ; Also from chatot4444
+
 	ld a, [hli]
 	ld [wInGameTradeGiveMonSpecies], a
 	ld a, [hli]
