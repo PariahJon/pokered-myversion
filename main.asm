@@ -101,12 +101,15 @@ INCLUDE "engine/math/random.asm"
 SECTION "Battle Engine 2", ROMX
 
 INCLUDE "engine/gfx/load_pokedex_tiles.asm"
-INCLUDE "engine/overworld/map_sprites.asm"
+;INCLUDE "engine/overworld/map_sprites.asm"
 INCLUDE "engine/overworld/emotion_bubbles.asm"
 INCLUDE "engine/events/evolve_trade.asm"
 INCLUDE "engine/battle/move_effects/substitute.asm"
 INCLUDE "engine/menus/pc.asm"
 
+SECTION "Overworld Sprites", ROMX
+
+INCLUDE "engine/overworld/map_sprites.asm"
 
 SECTION "Play Time", ROMX
 
