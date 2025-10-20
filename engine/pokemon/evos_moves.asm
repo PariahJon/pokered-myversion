@@ -108,7 +108,7 @@ Evolution_PartyMonLoop: ; loop over party mons
 .checkItemEvo
 
 	ld a, [wIsInBattle] ; are we in battle?
-+	and a
+	and a
 
 	ld a, [hli]
 

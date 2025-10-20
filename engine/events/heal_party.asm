@@ -36,7 +36,8 @@ HealParty:
 
 	ld hl, Moves
 
-	ld de, hl
+	ld d, h
+	ld e, l 
 
 	ld bc, MOVE_LENGTH
 	call AddNTimes
