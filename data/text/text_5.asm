@@ -11,7 +11,10 @@ _CableClubNPCMakingPreparationsText::
 _UsedStrengthText::
 	text_ram wNameBuffer
 	text " used"
-	line "STRENGTH.@"
+;	line "STRENGTH.@"
+
+	line "Strength.@"
+
 	text_end
 
 _CanMoveBouldersText::
@@ -27,29 +30,44 @@ _CurrentTooFastText::
 
 _CyclingIsFunText::
 	text "Cycling is fun!"
-	line "Forget SURFing!"
+;	line "Forget SURFing!"
+
+	line "Forget Surfing!"
+
 	prompt
 
 _FlashLightsAreaText::
-	text "A blinding FLASH"
+;	text "A blinding FLASH"
+
+	text "A blinding Flash"
+
 	line "lights the area!"
 	prompt
 
 _WarpToLastPokemonCenterText::
 	text "Warp to the last"
-	line "#MON CENTER."
+;	line "#MON CENTER."
+
+	line "#mon Center."
+
 	done
 
 _CannotUseTeleportNowText::
 	text_ram wNameBuffer
 	text " can't"
-	line "use TELEPORT now."
+;	line "use TELEPORT now."
+
+	line "use Teleport now."
+
 	prompt
 
 _CannotFlyHereText::
 	text_ram wNameBuffer
 	text " can't"
-	line "FLY here."
+;	line "FLY here."
+
+	line "Fly here."
+
 	prompt
 
 _NotHealthyEnoughText::
@@ -58,7 +76,10 @@ _NotHealthyEnoughText::
 	prompt
 
 _NewBadgeRequiredText::
-	text "No! A new BADGE"
+;	text "No! A new BADGE"
+
+	text "No! A new Badge"
+
 	line "is required."
 	prompt
 
@@ -81,24 +102,40 @@ _GotMonText::
 
 _SentToBoxText::
 	text "There's no more"
-	line "room for #MON!"
+;	line "room for #MON!"
+
+	line "room for #mon!"
+
 	cont "@"
 	text_ram wBoxMonNicks
 	text " was"
-	cont "sent to #MON"
-	cont "BOX @"
+;	cont "sent to #MON"
+;	cont "BOX @"
+
+	cont "sent to #mon"
+	cont "Box @"
+
 	text_ram wStringBuffer
 	text " on PC!"
 	done
 
 _BoxIsFullText::
 	text "There's no more"
-	line "room for #MON!"
+;	line "room for #MON!"
 
-	para "The #MON BOX"
+	line "room for #mon!"
+
+;	para "The #MON BOX"
+
+	para "The #mon Box"
+
 	line "is full and can't"
 	cont "accept any more!"
 
-	para "Change the BOX at"
-	line "a #MON CENTER!"
+;	para "Change the BOX at"
+;	line "a #MON CENTER!"
+
+	para "Change the Box at"
+	line "a #mon Center!"
+
 	done

@@ -190,11 +190,17 @@ _AfterTrade3Text::
 
 _NothingToCutText::
 	text "There isn't"
-	line "anything to CUT!"
+;	line "anything to CUT!"
+
+	line "anything to Cut!"
+
 	prompt
 
 _UsedCutText::
 	text_ram wNameBuffer
 	text " hacked"
-	line "away with CUT!"
+;	line "away with CUT!"
+
+	line "away with Cut!"
+
 	prompt

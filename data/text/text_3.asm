@@ -5,7 +5,10 @@ _FileDataDestroyedText::
 
 _WouldYouLikeToSaveText::
 	text "Would you like to"
-	line "SAVE the game?"
+;	line "SAVE the game?"
+
+	line "Save the game?"
+
 	done
 
 _GameSavedText::
@@ -21,7 +24,10 @@ _OlderFileWillBeErasedText::
 
 _WhenYouChangeBoxText::
 	text "When you change a"
-	line "#MON BOX, data"
+;	line "#MON BOX, data"
+
+	line "#mon Box, data"
+
 	cont "will be saved."
 
 	para "Is that okay?"
@@ -29,7 +35,10 @@ _WhenYouChangeBoxText::
 
 _ChooseABoxText::
 	text "Choose a"
-	line "<PKMN> BOX.@"
+;	line "<PKMN> BOX.@"
+
+	line "<PKMN> Box.@"
+
 	text_end
 
 _EvolvedText::
@@ -223,17 +232,26 @@ _ParalyzedMayNotAttackText::
 
 _SubstituteText::
 	text "It created a"
-	line "SUBSTITUTE!"
+;	line "SUBSTITUTE!"
+
+	line "Substitute!"
+
 	prompt
 
 _HasSubstituteText::
 	text "<USER>"
-	line "has a SUBSTITUTE!"
+;	line "has a SUBSTITUTE!"
+
+	line "has a Substitute!"
+
 	prompt
 
 _TooWeakSubstituteText::
 	text "Too weak to make"
-	line "a SUBSTITUTE!"
+;	line "a SUBSTITUTE!"
+
+	line "a Substitute!"
+
 	prompt
 
 _CoinsScatteredText::
@@ -267,7 +285,10 @@ _ConvertedTypeText::
 	prompt
 
 _StatusChangesEliminatedText::
-	text "All STATUS changes"
+;	text "All STATUS changes"
+
+	text "All Status changes"
+
 	line "are eliminated!"
 	prompt
 
