@@ -53,7 +53,10 @@ _VoltorbDexEntry::
 	next "power plants."
 	next "Easily mistaken"
 
-	page "for a # BALL,"
+;	page "for a # BALL,"
+
+	page "for a # Ball,"
+
 	next "they have zapped"
 	next "many people"
 	dex
@@ -69,9 +72,14 @@ _NidokingDexEntry::
 	dex
 
 _SlowbroDexEntry::
-	text "The SHELLDER that"
+;	text "The SHELLDER that"
+
+	text "The Shellder that"
+
 	next "is latched onto"
-	next "SLOWPOKE's tail"
+;	next "SLOWPOKE's tail"
+
+	next "Slowpoke's tail"
 
 	page "is said to feed"
 	next "on the host's left"
@@ -95,7 +103,10 @@ _ExeggutorDexEntry::
 
 	page "will drop off and"
 	next "continue on as an"
-	next "EXEGGCUTE"
+;	next "EXEGGCUTE"
+
+	next "Exeggcute"
+
 	dex
 
 _LickitungDexEntry::
@@ -130,7 +141,10 @@ _GrimerDexEntry::
 
 _GengarDexEntry::
 	text "Under a full moon,"
-	next "this #MON"
+;	next "this #MON"
+
+	next "this #mon"
+
 	next "likes to mimic"
 
 	page "the shadows of"
@@ -143,7 +157,10 @@ _NidoranFDexEntry::
 	next "its venomous"
 	next "barbs render this"
 
-	page "#MON dangerous."
+;	page "#MON dangerous."
+
+	page "#mon dangerous."
+
 	next "The female has"
 	next "smaller horns"
 	dex
@@ -164,7 +181,10 @@ _CuboneDexEntry::
 	next "helmet, no one"
 
 	page "has ever seen"
-	next "this #MON's"
+;	next "this #MON's"
+
+	next "this #mon's"
+
 	next "real face"
 	dex
 
@@ -179,7 +199,10 @@ _RhyhornDexEntry::
 	dex
 
 _LaprasDexEntry::
-	text "A #MON that"
+;	text "A #MON that"
+
+	text "A #mon that"
+
 	next "has been over-"
 	next "hunted almost to"
 
@@ -189,7 +212,10 @@ _LaprasDexEntry::
 	dex
 
 _ArcanineDexEntry::
-	text "A #MON that"
+;	text "A #MON that"
+
+	text "A #mon that"
+
 	next "has been admired"
 	next "since the past"
 
@@ -241,7 +267,9 @@ _TentacoolDexEntry::
 _GastlyDexEntry::
 	text "Almost invisible,"
 	next "this gaseous"
-	next "#MON cloaks"
+;	next "#MON cloaks"
+
+	next "#mon cloaks"
 
 	page "the target and"
 	next "puts it to sleep"
@@ -260,7 +288,10 @@ _ScytherDexEntry::
 
 _StaryuDexEntry::
 	text "An enigmatic"
-	next "#MON that can"
+;	next "#MON that can"
+
+	next "#mon that can"
+
 	next "effortlessly"
 
 	page "regenerate any"
@@ -269,7 +300,10 @@ _StaryuDexEntry::
 	dex
 
 _BlastoiseDexEntry::
-	text "A brutal #MON"
+;	text "A brutal #MON"
+
+	text "A brutal #mon"
+
 	next "with pressurized"
 	next "water jets on its"
 
@@ -370,7 +404,10 @@ _GravelerDexEntry::
 
 _ChanseyDexEntry::
 	text "A rare and elusive"
-	next "#MON that is"
+;	next "#MON that is"
+
+	next "#mon that is"
+
 	next "said to bring"
 
 	page "happiness to those"
@@ -443,7 +480,10 @@ _PsyduckDexEntry::
 	next "enemies with its"
 	next "vacant look, this"
 
-	page "wily #MON will"
+;	page "wily #MON will"
+
+	page "wily #mon will"
+
 	next "use psychokinetic"
 	next "powers"
 	dex
@@ -490,7 +530,10 @@ _ElectabuzzDexEntry::
 
 _MagnetonDexEntry::
 	text "Formed by several"
-	next "MAGNEMITEs linked"
+;	next "MAGNEMITEs linked"
+
+	next "Magnemites linked"
+
 	next "together. They"
 
 	page "frequently appear"
@@ -571,7 +614,9 @@ _VenonatDexEntry::
 _DragoniteDexEntry::
 	text "An extremely"
 	next "rarely seen"
-	next "marine #MON."
+;	next "marine #MON."
+
+	next "marine #mon."
 
 	page "Its intelligence"
 	next "is said to match"
@@ -620,7 +665,10 @@ _MoltresDexEntry::
 
 _ArticunoDexEntry::
 	text "A legendary bird"
-	next "#MON that is"
+;	next "#MON that is"
+
+	next "#mon that is"
+
 	next "said to appear to"
 
 	page "doomed people who"
@@ -630,7 +678,10 @@ _ArticunoDexEntry::
 
 _ZapdosDexEntry::
 	text "A legendary bird"
-	next "#MON that is"
+;	next "#MON that is"
+
+	next "#mon that is"
+
 	next "said to appear"
 
 	page "from clouds while"
@@ -690,7 +741,10 @@ _NinetalesDexEntry::
 
 _PikachuDexEntry::
 	text "When several of"
-	next "these #MON"
+;	next "these #MON"
+
+	next "these #mon"
+
 	next "gather, their"
 
 	page "electricity could"
@@ -710,7 +764,10 @@ _RaichuDexEntry::
 
 _DratiniDexEntry::
 	text "Long considered a"
-	next "mythical #MON"
+;	next "mythical #MON"
+
+	next "mythical #mon"
+
 	next "until recently"
 
 	page "when a small"
@@ -719,7 +776,10 @@ _DratiniDexEntry::
 	dex
 
 _DragonairDexEntry::
-	text "A mystical #MON"
+;	text "A mystical #MON"
+
+	text "A mystical #mon"
+
 	next "that exudes a"
 	next "gentle aura."
 
@@ -729,7 +789,10 @@ _DragonairDexEntry::
 	dex
 
 _KabutoDexEntry::
-	text "A #MON that"
+;	text "A #MON that"
+
+	text "A #mon that"
+
 	next "was resurrected"
 	next "from a fossil"
 
@@ -800,7 +863,10 @@ _OmanyteDexEntry::
 
 _OmastarDexEntry::
 	text "A prehistoric"
-	next "#MON that died"
+;	next "#MON that died"
+
+	next "#mon that died"
+
 	next "out when its"
 
 	page "heavy shell made"
@@ -835,7 +901,10 @@ _EeveeDexEntry::
 
 	page "it is exposed to"
 	next "radiation from"
-	next "element STONEs"
+;	next "element STONEs"
+
+	next "element Stones"
+
 	dex
 
 _FlareonDexEntry::
@@ -894,8 +963,12 @@ _EkansDexEntry::
 	next "Eats the eggs of"
 
 	page "birds, such as"
-	next "PIDGEY and"
-	next "SPEAROW, whole"
+;	next "PIDGEY and"
+;	next "SPEAROW, whole"
+
+	next "Pidgey and"
+	next "Spearow, whole"
+
 	dex
 
 _ParasDexEntry::
@@ -941,8 +1014,10 @@ _WeedleDexEntry::
 _KakunaDexEntry::
 	text "Almost incapable"
 	next "of moving, this"
-	next "#MON can only"
+;	next "#MON can only"
 
+	next "#mon can only"
+	
 	page "harden its shell"
 	next "to protect itself"
 	next "from predators"
@@ -979,7 +1054,10 @@ _PrimeapeDexEntry::
 	dex
 
 _DugtrioDexEntry::
-	text "A team of DIGLETT"
+;	text "A team of DIGLETT"
+
+	text "A team of Diglett"
+
 	next "triplets."
 	next "It triggers huge"
 
@@ -1019,7 +1097,10 @@ _CaterpieDexEntry::
 	dex
 
 _MetapodDexEntry::
-	text "This #MON is"
+;	text "This #MON is"
+
+	text "This #mon is"
+
 	next "vulnerable to"
 	next "attack while its"
 
@@ -1063,9 +1144,14 @@ _HypnoDexEntry::
 	next "with an enemy, it"
 	next "will use a mix of"
 
-	page "PSI moves such as"
-	next "HYPNOSIS and"
-	next "CONFUSION"
+;	page "PSI moves such as"
+;	next "HYPNOSIS and"
+;	next "CONFUSION"
+
+	page "Psi moves such as"
+	next "Hypnosis and"
+	next "Confusion"
+
 	dex
 
 _GolbatDexEntry::
@@ -1150,7 +1236,10 @@ _ElectrodeDexEntry::
 
 _ClefableDexEntry::
 	text "A timid fairy"
-	next "#MON that is"
+;	next "#MON that is"
+
+	next "#mon that is"
+
 	next "rarely seen. It"
 
 	page "will run and hide"
@@ -1161,10 +1250,15 @@ _ClefableDexEntry::
 _WeezingDexEntry::
 	text "Where two kinds"
 	next "of poison gases"
-	next "meet, 2 KOFFINGs"
+;	next "meet, 2 KOFFINGs"
+
+	next "meet, 2 Koffings"
 
 	page "can fuse into a"
-	next "WEEZING over many"
+;	next "WEEZING over many"
+
+	next "Weezing over many"
+
 	next "years"
 	dex
 
@@ -1204,7 +1298,10 @@ _AbraDexEntry::
 	next "will identify"
 
 	page "impending danger"
-	next "and TELEPORT to"
+;	next "and TELEPORT to"
+
+	next "and Teleport to"
+
 	next "safety"
 	dex
 
@@ -1223,7 +1320,10 @@ _PidgeottoDexEntry::
 	next "of its sprawling"
 	next "territorial area,"
 
-	page "this #MON will"
+;	page "this #MON will"
+
+	page "this #mon will"
+
 	next "fiercely peck at"
 	next "any intruder"
 	dex
@@ -1235,7 +1335,10 @@ _PidgeotDexEntry::
 
 	page "speed to pick off"
 	next "unwary prey such"
-	next "as MAGIKARP"
+;	next "as MAGIKARP"
+
+	next "as Magikarp"
+
 	dex
 
 _StarmieDexEntry::
@@ -1255,7 +1358,10 @@ _BulbasaurDexEntry::
 
 	page "The plant sprouts"
 	next "and grows with"
-	next "this #MON"
+;	next "this #MON"
+
+	next "this #mon"
+
 	dex
 
 _VenusaurDexEntry::
@@ -1310,7 +1416,10 @@ _PonytaDexEntry::
 
 _RapidashDexEntry::
 	text "Very competitive,"
-	next "this #MON will"
+;	next "this #MON will"
+
+	next "this #mon will"
+
 	next "chase anything"
 
 	page "that moves fast"
@@ -1340,7 +1449,10 @@ _RaticateDexEntry::
 
 _NidorinoDexEntry::
 	text "An aggressive"
-	next "#MON that is"
+;	next "#MON that is"
+
+	next "#mon that is"
+
 	next "quick to attack."
 
 	page "The horn on its"
@@ -1369,7 +1481,10 @@ _GeodudeDexEntry::
 	dex
 
 _PorygonDexEntry::
-	text "A #MON that"
+;	text "A #MON that"
+
+	text "A #mon that"
+
 	next "consists entirely"
 	next "of programming"
 
@@ -1380,7 +1495,10 @@ _PorygonDexEntry::
 
 _AerodactylDexEntry::
 	text "A ferocious, pre-"
-	next "historic #MON"
+;	next "historic #MON"
+
+	next "historic #mon"
+
 	next "that goes for the"
 
 	page "enemy's throat"
@@ -1394,7 +1512,10 @@ _MagnemiteDexEntry::
 	next "Appears without"
 
 	page "warning and uses"
-	next "THUNDER WAVE and"
+;	next "THUNDER WAVE and"
+
+	next "Thunder Wave and"
+
 	next "similar moves"
 	dex
 
@@ -1480,7 +1601,10 @@ _VileplumeDexEntry::
 
 _BellsproutDexEntry::
 	text "A carnivorous"
-	next "#MON that traps"
+;	next "#MON that traps"
+
+	next "#mon that traps"
+
 	next "and eats bugs."
 
 	page "It uses its root"
@@ -1490,12 +1614,18 @@ _BellsproutDexEntry::
 
 _WeepinbellDexEntry::
 	text "It spits out"
-	next "POISONPOWDER to"
+;	next "POISONPOWDER to"
+
+	next "PoisonPowder to"
+
 	next "immobilize the"
 
 	page "enemy and then"
 	next "finishes it with"
-	next "a spray of ACID"
+;	next "a spray of ACID"
+
+	next "a spray of Acid"
+
 	dex
 
 _VictreebelDexEntry::
