@@ -5,39 +5,61 @@ _CeruleanGymMistyPreBattleText::
 	para "Trainers who want"
 	line "to turn pro have"
 	cont "to have a policy"
-	cont "about #MON!"
+;	cont "about #MON!"
+
+	cont "about #mon!"
 
 	para "What is your"
 	line "approach when you"
-	cont "catch #MON?"
+;	cont "catch #MON?"
+
+	cont "catch #mon?"
 
 	para "My policy is an"
 	line "all-out offensive"
 	cont "with water-type"
-	cont "#MON!"
+;	cont "#MON!"
+
+	cont "#mon!"
+
 	done
 
 _CeruleanGymMistyTM11ExplanationText::
 	text "TM11 teaches"
-	line "BUBBLEBEAM!"
+;	line "BUBBLEBEAM!"
+
+	line "Bubble Beam!"
 
 	para "Use it on an"
-	line "aquatic #MON!"
+;	line "aquatic #MON!"
+
+	line "aquatic #mon!"
+
 	done
 
 _CeruleanGymMistyCascadeBadgeInfoText::
-	text "The CASCADEBADGE"
-	line "makes all #MON"
+;	text "The CASCADEBADGE"
+;	line "makes all #MON"
+
+	text "The CascadeBadge"
+	line "makes all #mon"
+
 	cont "up to L30 obey!"
 
 	para "That includes"
 	line "even outsiders!"
 
 	para "There's more, you"
-	line "can now use CUT"
+;	line "can now use CUT"
+
+	line "can now use Cut"
+
 	cont "any time!"
 
-	para "You can CUT down"
+;	para "You can CUT down"
+
+	para "You can Cut down"
+
 	line "small bushes to"
 	cont "open new paths!"
 
@@ -62,7 +84,10 @@ _CeruleanGymMistyReceivedCascadeBadgeText::
 	para "All right!"
 
 	para "You can have the"
-	line "CASCADEBADGE to"
+;	line "CASCADEBADGE to"
+
+	line "CascadeBadge to"
+
 	cont "show you beat me!@"
 	text_end
 
@@ -70,7 +95,10 @@ _CeruleanGymBattleText1::
 	text "I'm more than good"
 	line "enough for you!"
 
-	para "MISTY can wait!"
+;	para "MISTY can wait!"
+
+	para "Misty can wait!"
+
 	done
 
 _CeruleanGymEndBattleText1::
@@ -98,7 +126,10 @@ _CeruleanGymEndBattleText2::
 	prompt
 
 _CeruleanGymAfterBattleText2::
-	text "MISTY is going to"
+;	text "MISTY is going to"
+
+	text "Misty is going to"
+
 	line "keep improving!"
 
 	para "She won't lose to"
@@ -111,20 +142,30 @@ _CeruleanGymGymGuideChampInMakingText::
 
 	para "Here's my advice!"
 
-	para "The LEADER, MISTY,"
+;	para "The LEADER, MISTY,"
+
+	para "The Leader, Misty,"
+
 	line "is a pro who uses"
-	cont "water #MON!"
+;	cont "water #MON!"
+
+	cont "water #mon!"
 
 	para "You can drain all"
 	line "their water with"
-	cont "plant #MON!"
+;	cont "plant #MON!"
+
+	cont "plant #mon!"
 
 	para "Or, zap them with"
 	line "electricity!"
 	done
 
 _CeruleanGymGymGuideBeatMistyText::
-	text "You beat MISTY!"
+;	text "You beat MISTY!"
+
+	text "You beat Misty!"
+
 	line "What'd I tell ya?"
 
 	para "You and me kid,"
