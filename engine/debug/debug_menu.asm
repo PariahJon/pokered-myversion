@@ -63,11 +63,17 @@ DebugBattlePlayerName:
 	db "Tom@"
 
 DebugBattleRivalName:
-	db "Juerry@"
+;	db "Juerry@"
+
+	db "Jerry@"
 
 DebugMenuOptions:
-	db   "FIGHT"
-	next "DEBUG@"
+;	db   "FIGHT"
+;	next "DEBUG@"
+
+	db   "Fight"
+	next "Debug@"
+
 ELSE
 	ret
 ENDC
