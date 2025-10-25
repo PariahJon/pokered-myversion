@@ -11,12 +11,20 @@ _CeladonMansion3FGraphicArtistText::
 
 _CeladonMansion3FWriterText::
 	text "I wrote the story!"
-	line "Isn't ERIKA cute?"
+;	line "Isn't ERIKA cute?"
 
-	para "I like MISTY a"
+	line "Isn't Erika cute?"
+
+;	para "I like MISTY a"
+
+	para "I like Misty a"
+
 	line "lot too!"
 
-	para "Oh, and SABRINA,"
+;	para "Oh, and SABRINA,"
+
+	para "Oh, and Sabrina,"
+
 	line "I like her!"
 	done
 
@@ -27,7 +35,10 @@ _CeladonMansion3FGameDesignerText::
 	line "designer!"
 
 	para "Filling up your"
-	line "#DEX is tough,"
+;	line "#DEX is tough,"
+
+	line "#Dex is tough,"
+
 	cont "but don't quit!"
 
 	para "When you finish,"
@@ -37,7 +48,10 @@ _CeladonMansion3FGameDesignerText::
 _CeladonMansion3FGameDesignerCompletedDexText::
 	text "Wow! Excellent!"
 	line "You completed"
-	cont "your #DEX!"
+;	cont "your #DEX!"
+
+	cont "your #Dex!"
+
 	cont "Congratulations!"
 	cont "...@"
 	text_end
@@ -62,6 +76,9 @@ _CeladonMansion3FGameScriptPCText::
 	done
 
 _CeladonMansion3FDevRoomSignText::
-	text "GAME FREAK"
+;	text "GAME FREAK"
+
+	text "Game Freak"
+
 	line "Development Room"
 	done

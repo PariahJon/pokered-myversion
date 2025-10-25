@@ -6,7 +6,9 @@ _CeladonMartRoofLittleGirlGiveHerWhichDrinkText::
 _CeladonMartRoofLittleGirlYayFreshWaterText::
 	text "Yay!"
 
-	para "FRESH WATER!"
+;	para "FRESH WATER!"
+
+	para "Fresh Water!"
 
 	para "Thank you!"
 
@@ -27,7 +29,9 @@ _CeladonMartRoofLittleGirlTM13ExplanationText::
 	para "@"
 	text_ram wStringBuffer
 	text " contains"
-	line "ICE BEAM!"
+;	line "ICE BEAM!"
+
+	line "Ice Beam!"
 
 	para "It can freeze the"
 	line "target sometimes!@"
@@ -36,7 +40,9 @@ _CeladonMartRoofLittleGirlTM13ExplanationText::
 _CeladonMartRoofLittleGirlYaySodaPopText::
 	text "Yay!"
 
-	para "SODA POP!"
+;	para "SODA POP!"
+
+	para "Soda Pop!"
 
 	para "Thank you!"
 
@@ -57,7 +63,9 @@ _CeladonMartRoofLittleGirlTM48ExplanationText::
 	para "@"
 	text_ram wStringBuffer
 	text " contains"
-	line "ROCK SLIDE!"
+;	line "ROCK SLIDE!"
+
+	line "Rock Slide!"
 
 	para "It can spook the"
 	line "target sometimes!@"
@@ -66,7 +74,9 @@ _CeladonMartRoofLittleGirlTM48ExplanationText::
 _CeladonMartRoofLittleGirlYayLemonadeText::
 	text "Yay!"
 
-	para "LEMONADE!"
+;	para "LEMONADE!"
+
+	para "Lemonade!"
 
 	para "Thank you!"
 
@@ -83,7 +93,10 @@ _CeladonMartRoofLittleGirlTM49ExplanationText::
 	text_start
 
 	para "TM49 contains"
-	line "TRI ATTACK!@"
+;	line "TRI ATTACK!@"
+
+	line "Tri Attack!@"
+
 	text_end
 
 _CeladonMartRoofLittleGirlNoRoomText::
@@ -122,8 +135,12 @@ _CeladonMartRoofLittleGirlGiveHerADrinkText::
 	done
 
 _CeladonMartRoofCurrentFloorSignText::
-	text "ROOFTOP SQUARE:"
-	line "VENDING MACHINES"
+;	text "ROOFTOP SQUARE:"
+;	line "VENDING MACHINES"
+
+	text "Rooftop Square:"
+	line "Vending Machines"
+
 	done
 
 _VendingMachineText1::
