@@ -2083,7 +2083,10 @@ DisplayBattleMenu::
 	ld a, $2 ; select the "ITEM" menu
 	jp .upperLeftMenuItemWasNotSelected
 .oldManName
-	db "OLD MAN@"
+;	db "OLD MAN@"
+
+	db "Old Man@"
+
 .handleBattleMenuInput
 	ld a, [wBattleAndStartSavedMenuItem]
 	ld [wCurrentMenuItem], a
@@ -2732,7 +2735,9 @@ MoveDisabledText:
 	text_end
 
 WhichTechniqueString:
-	db "WHICH TECHNIQUE?@"
+;	db "WHICH TECHNIQUE?@"
+
+	db "Which Technique?@"
 
 SelectMenuItem_CursorUp:
 	ld a, [wCurrentMenuItem]
@@ -2963,7 +2968,9 @@ DisabledText:
 	db "disabled!@"
 
 TypeText:
-	db "TYPE@"
+;	db "TYPE@"
+
+	db "Type@"
 
 SelectEnemyMove:
 	ld a, [wLinkState]
@@ -6979,13 +6986,13 @@ LoadGhostPic:
 	ld hl, wEnemyMonNick  ; set name to "GHOST"
 	ld a, "G"
 	ld [hli], a
-	ld a, "H"
+	ld a, "h"
 	ld [hli], a
-	ld a, "O"
+	ld a, "o"
 	ld [hli], a
-	ld a, "S"
+	ld a, "s"
 	ld [hli], a
-	ld a, "T"
+	ld a, "t"
 	ld [hli], a
 	ld [hl], "@"
 	ld a, [wCurPartySpecies]
