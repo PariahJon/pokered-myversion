@@ -484,13 +484,21 @@ PrintNamingText:
 	jp PlaceString
 
 YourTextString:
-	db "YOUR @"
+;	db "YOUR @"
+
+	db "Your @"
 
 RivalsTextString:
-	db "RIVAL's @"
+;	db "RIVAL's @"
+
+	db "Rival's @"
 
 NameTextString:
-	db "NAME?@"
+;	db "NAME?@"
+
+	db "Name?@"
 
 NicknameTextString:
-	db "NICKNAME?@"
+;	db "NICKNAME?@"
+
+	db "Nickname?@"
