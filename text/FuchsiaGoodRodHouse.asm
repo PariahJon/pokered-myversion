@@ -1,6 +1,10 @@
 _FuchsiaGoodRodHouseFishingGuruText::
-	text "I'm the FISHING"
-	line "GURU's older"
+;	text "I'm the FISHING"
+;	line "GURU's older"
+
+	text "I'm the Fishing"
+	line "Guru's older"
+
 	cont "brother!"
 
 	para "I simply Looove"
