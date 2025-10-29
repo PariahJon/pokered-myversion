@@ -26,19 +26,29 @@ _Museum1FScientist1DoYouKnowWhatAmberIsText::
 
 	para "Oh, whatever!"
 	line "Do you know what"
-	cont "AMBER is?"
+;	cont "AMBER is?"
+
+	cont "Amber is?"
+
 	done
 
 _Museum1FScientist1TheresALabSomewhereText::
 	text "There's a lab"
 	line "somewhere trying"
 	cont "to resurrect"
-	cont "ancient #MON"
-	cont "from AMBER."
+;	cont "ancient #MON"
+;	cont "from AMBER."
+
+	cont "ancient #mon"
+	cont "from Amber."
+
 	done
 
 _Museum1FScientist1AmberIsFossilizedTreeSapText::
-	text "AMBER is fossil-"
+;	text "AMBER is fossil-"
+
+	text "Amber is fossil-"
+
 	line "ized tree sap."
 	done
 
@@ -61,11 +71,17 @@ _Museum1FGamblerText::
 _Museum1FScientist2TakeThisToAPokemonLabText::
 	text "Ssh! I think that"
 	line "this chunk of"
-	cont "AMBER contains"
-	cont "#MON DNA!"
+;	cont "AMBER contains"
+;	cont "#MON DNA!"
+
+	cont "Amber contains"
+	cont "#mon DNA!"
 
 	para "It would be great"
-	line "if #MON could"
+;	line "if #MON could"
+
+	line "if #mon could"
+
 	cont "be resurrected"
 	cont "from it!"
 
@@ -76,18 +92,28 @@ _Museum1FScientist2TakeThisToAPokemonLabText::
 	line "to ask!"
 
 	para "Take this to a"
-	line "#MON LAB and"
+;	line "#MON LAB and"
+
+	line "#mon Lab and"
+
 	cont "get it examined!"
 	prompt
 
 _Museum1FScientist2ReceivedOldAmberText::
 	text "<PLAYER> received"
-	line "OLD AMBER!@"
+;	line "OLD AMBER!@"
+
+	line "Old Amber!@"
+
 	text_end
 
 _Museum1FScientist2GetTheOldAmberCheckText::
-	text "Ssh! Get the OLD"
-	line "AMBER checked!"
+;	text "Ssh! Get the OLD"
+;	line "AMBER checked!"
+
+	text "Ssh! Get the Old"
+	line "Amber checked!"
+
 	done
 
 _Museum1FScientist2YouDontHaveSpaceText::
@@ -99,10 +125,16 @@ _Museum1FScientist3Text::
 	text "We are proud of 2"
 	line "fossils of very"
 	cont "rare, prehistoric"
-	cont "#MON!"
+;	cont "#MON!"
+
+	cont "#mon!"
+
 	done
 
 _Museum1FOldAmberText::
-	text "The AMBER is"
+;	text "The AMBER is"
+
+	text "The Amber is"
+
 	line "clear and gold!"
 	done

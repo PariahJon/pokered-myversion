@@ -1,5 +1,8 @@
 _MtMoon1FHikerBattleText::
-	text "WHOA! You shocked"
+;	text "WHOA! You shocked"
+
+	text "Whoa! You shocked"
+
 	line "me! Oh, you're"
 	cont "just a kid!"
 	done
@@ -54,12 +57,18 @@ _MtMoon1FSuperNerdBattleText::
 
 _MtMoon1FSuperNerdEndBattleText::
 	text "My"
-	line "#MON won't do!"
+;	line "#MON won't do!"
+
+	line "#mon won't do!"
+
 	prompt
 
 _MtMoon1FSuperNerdAfterBattleText::
 	text "I have to find"
-	line "stronger #MON."
+;	line "stronger #MON."
+
+	line "stronger #mon."
+
 	done
 
 _MtMoon1FCooltrainerF2BattleText::
@@ -92,13 +101,19 @@ _MtMoon1FYoungster2EndBattleText::
 _MtMoon1FYoungster2AfterBattleText::
 	text "I saw them! I'm"
 	line "sure they're from"
-	cont "TEAM ROCKET!"
+;	cont "TEAM ROCKET!"
+
+	cont "Team Rocket!"
+
 	done
 
 _MtMoon1FYoungster3BattleText::
 	text "Go through this"
 	line "cave to get to"
-	cont "CERULEAN CITY!"
+;	cont "CERULEAN CITY!"
+
+	cont "Cerulean City!"
+
 	done
 
 _MtMoon1FYoungster3EndBattleText::
@@ -107,13 +122,19 @@ _MtMoon1FYoungster3EndBattleText::
 	prompt
 
 _MtMoon1FYoungster3AfterBattleText::
-	text "ZUBAT is tough!"
+;	text "ZUBAT is tough!"
+
+	text "Zubat is tough!"
+
 	line "But, it can be"
 	cont "useful if you"
 	cont "catch one."
 	done
 
 _MtMoon1FBewareZubatSign::
-	text "Beware! ZUBAT is"
+;	text "Beware! ZUBAT is"
+
+	text "Beware! Zubat is"
+
 	line "a blood sucker!"
 	done
