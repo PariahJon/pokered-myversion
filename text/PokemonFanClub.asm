@@ -1,18 +1,26 @@
 _PokemonFanClubPikachuFanNormalText::
 	text "Won't you admire"
-	line "my PIKACHU's"
+;	line "my PIKACHU's"
+
+	line "my Pikachu's"
+
 	cont "adorable tail?"
 	done
 
 _PokemonFanClubPikachuFanBetterText::
-	text "Humph! My PIKACHU"
+;	text "Humph! My PIKACHU"
+
+	text "Humph! My Pikachu"
+
 	line "is twice as cute"
 	cont "as that one!"
 	done
 
 _PokemonFanClubSeelFanNormalText::
 	text "I just love my"
-	line "SEEL!"
+;	line "SEEL!"
+
+	line "Seel!"
 
 	para "It squeals when I"
 	line "hug it!"
@@ -21,35 +29,53 @@ _PokemonFanClubSeelFanNormalText::
 _PokemonFanClubSeelFanBetterText::
 	text "Oh dear!"
 
-	para "My SEEL is far"
+;	para "My SEEL is far"
+
+	para "My Seel is far"
+
 	line "more attractive!"
 	done
 
 _PokemonFanClubPikachuText::
-	text "PIKACHU: Chu!"
+;	text "PIKACHU: Chu!"
+
+	text "Pikachu: Chu!"
+
 	line "Pikachu!"
 	done
 
 _PokemonFanClubSeelText::
-	text "SEEL: Kyuoo!"
+;	text "SEEL: Kyuoo!"
+
+	text "Seel: Kyuoo!"
+
 	done
 
 _PokemonFanClubChairmanIntroText::
 	text "I chair the"
-	line "#MON Fan Club!"
+;	line "#MON Fan Club!"
+
+	line "#mon Fan Club!"
 
 	para "I have collected"
-	line "over 100 #MON!"
+;	line "over 100 #MON!"
+
+	line "over 100 #mon!"
 
 	para "I'm very fussy"
 	line "when it comes to"
-	cont "#MON!"
+;	cont "#MON!"
+
+	cont "#mon!"
 
 	para "So..."
 
 	para "Did you come"
 	line "visit to hear"
-	cont "about my #MON?"
+;	cont "about my #MON?"
+
+	cont "about my #mon?"
+
 	done
 
 _PokemonFanClubChairmanStoryText::
@@ -57,7 +83,9 @@ _PokemonFanClubChairmanStoryText::
 	line "Then listen up!"
 
 	para "My favorite"
-	line "RAPIDASH..."
+;	line "RAPIDASH..."
+
+	line "Rapidash..."
 
 	para "It...cute..."
 	line "lovely...smart..."
@@ -93,14 +121,21 @@ _PokemonFanClubExplainBikeVoucherText::
 	text_start
 
 	para "Exchange that for"
-	line "a BICYCLE!"
+;	line "a BICYCLE!"
+
+	line "a Bicycle!"
 
 	para "Don't worry, my"
-	line "FEAROW will FLY"
+;	line "FEAROW will FLY"
+
+	line "Fearow will Fly"
+
 	cont "me anywhere!"
 
 	para "So, I don't need a"
-	line "BICYCLE!"
+;	line "BICYCLE!"
+
+	line "Bicycle!"
 
 	para "I hope you like"
 	line "cycling!"
@@ -117,7 +152,9 @@ _PokemonFanClubChairFinalText::
 
 	para "Did you come see"
 	line "me about my"
-	cont "#MON again?"
+;	cont "#MON again?"
+
+	cont "#mon again?"
 
 	para "No? Too bad!"
 	done
@@ -130,7 +167,10 @@ _PokemonFanClubBagFullText::
 _PokemonFanClubReceptionistText::
 	text "Our Chairman is"
 	line "very vocal about"
-	cont "#MON."
+;	cont "#MON."
+
+	cont "#mon."
+
 	done
 
 _PokemonFanClubSign1Text::

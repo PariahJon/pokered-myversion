@@ -1,7 +1,13 @@
 _PokemonTower6FGhostWasCubonesMotherText::
-	text "The GHOST was the"
+;	text "The GHOST was the"
+
+	text "The Ghost was the"
+
 	line "restless soul of"
-	cont "CUBONE's mother!"
+;	cont "CUBONE's mother!"
+
+	cont "Cubone's mother!"
+
 	done
 
 _PokemonTower6FSoulWasCalmedText::
