@@ -1,11 +1,17 @@
 _RockTunnelB1FHiker3AfterBattleText::
 	text "I'll raise my"
-	line "#MON to beat"
+;	line "#MON to beat"
+
+	line "#mon to beat"
+
 	cont "yours, kid!"
 	done
 
 _RockTunnelB1FSuperNerd3BattleText::
-	text "I draw #MON"
+;	text "I draw #MON"
+
+	text "I draw #mon"
+
 	line "when I'm home."
 	done
 
